@@ -2,6 +2,7 @@
 #include <locale.h>
 
 int main(void) {
+    setlocale(LC_ALL)
     int N;
 
     printf("coloque o numero: ");   
