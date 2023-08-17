@@ -12,7 +12,7 @@ int main(void)
     printf("Coloque o Número: ");
     scanf("%i",&N);
 
-    printf("A tersa parte deste número é: %i", N/3);
+    printf("A tersa parte deste número é: %f", N/3.0);
 
     return 0;
 }
