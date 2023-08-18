@@ -19,7 +19,7 @@ int main(void)
     printf("Coloque o y2: ");
     scanf("%f",&y2);
 
-    F = sqrt(pow(x1-x2,2) + pow(y1-y2,2));
+    F = sqrt(pow((x1-x2),2) + pow((y1-y2),2));
 
     printf("A tersa parte deste número é: %f", F);
 
