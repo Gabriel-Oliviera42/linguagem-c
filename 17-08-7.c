@@ -6,13 +6,13 @@ int main(void)
 
     setlocale(LC_ALL, "Portuguese");
     
-    int T;
+    float T;
 
 
     printf("Coloque sua témperatura: ");
-    scanf("%i",&T);
+    scanf("%f",&T);
 
-    if (T >= 37) {
+    if (T > 37) {
         printf("você está com febre");
     } else {
         printf("você tá bem");
