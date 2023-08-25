@@ -14,11 +14,11 @@ int main(void)
 
     if (QP < 1000) {
         printf("público baixo");
-    } else if (QP < 10001){
-        printf("público médio");
-    } else {
-        printf("público bom");
-    }
+        } else if (QP < 10001){
+            printf("público médio");
+            } else {
+            printf("público bom");
+            }
 
     return 0;
 }

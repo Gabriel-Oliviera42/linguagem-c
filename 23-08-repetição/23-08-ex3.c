@@ -2,19 +2,19 @@
 
 int main(void)
 {
-    int I, MA = 0, A;
+    float I, MA = 0, A;
 
     for (I = 0; I < 10; I++) {
         
         printf("Coloque a Altura: ");
-        scanf("%i",&A);
+        scanf("%f",&A);
 
         if (A > MA) {
             MA = A;
         }
     }
 
-    printf("Maior Altura: %i", MA);
+    printf("Maior Altura: %f", MA);
 
 
     return 0;

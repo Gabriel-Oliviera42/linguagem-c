@@ -4,7 +4,7 @@
 int main(void)
 {
     int P, N, I;
-    float R;
+    double R;
 
     printf("Coloque o Numero: ");
     scanf("%i",&N);
