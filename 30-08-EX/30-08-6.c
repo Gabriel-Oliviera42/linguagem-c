@@ -1,7 +1,6 @@
-#define _CRT_SECURY_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
-int main()
+int main(void)
 {
 char texto[50];
 int tamanho;
@@ -9,7 +8,7 @@ int tamanho;
 // caracteres: LINGUAGEM DE PROGRAMAÇÂO
 // A função strcpy copia a cadeia de caracteres
 // LINGUAGEM DE PROGRAMAÇÃO para a variável texto
-strcpy_s(texto, "LINGUAGEM DE PROGRAMAÇÃO");
+strcpy(texto, "LINGUAGEM DE PROGRAMAÇÃO");
 // A variável tamanho recebe o número de caracteres da cadeia
 // armazenada na variável texto
 tamanho = strlen(texto);

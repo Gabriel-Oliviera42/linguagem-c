@@ -1,7 +1,6 @@
-#define _CRT_SECURY_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
-void main()
+void main(void)
 {
 // A variável texto1 recebe a cadeia de
 // caracteres: Programa de computador
@@ -17,5 +16,5 @@ int posi;
 posi = strstr(texto1, texto2) - texto1;
 //Mostra o conteúdo da variável posi
 printf("\nPosição = %d\n", posi);
-system("pause");
+return 0;
 }

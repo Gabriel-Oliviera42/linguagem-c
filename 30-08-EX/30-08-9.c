@@ -1,8 +1,6 @@
-#define _CRT_SECURY_NO_WARNINGS
-#include <iostream>
 #include <stdio.h>
 #include <string.h>
-void main()
+int main(void)
 {
 // A variável texto1 é inicializada com a cadeia
 // de caracteres PROGRAMA COMPUTADOR
@@ -37,17 +35,17 @@ i++;
 // A função strncpy copia da cadeia texto1, para a cadeia
 // texto3 a quantidade de caracteres existentes antes do
 // primeiro espaço em branco
-strncpy_s(texto3, texto1, i + 1);
+strncpy(texto3, texto1, i + 1);
 // A linha abaixo inclui \0 na cadeia TEXTO3
 // para finalizar a cadeia que está sendo gerada
 texto3[i + 1] = '\0';
 // Na cadeia de caracteres texto3 será acrescentada,
 // ou seja, concatenada,
 // a cadeia "PARA " que está na variável texto2
-strcat_s(texto3, texto2);
+strcat(texto3, texto2);
 // A linha abaixo concatena o \0 para finalizar
 // a cadeia que está sendo gerada
-strcat_s(texto3, "\0");
+strcat(texto3, "\0");
 // A variável j receberá a próxima posição a ser ocupada
 // no vetor que representa a cadeia de caracteres que está
 // sendo gerada
@@ -67,5 +65,5 @@ j = j + 1;
 texto3[j] = '\0';
 // A linha abaixo mostra a nova cadeia gerada
 printf("\nNova cadeia de caracteres = %s\n", texto3);
-system("pause");
+return 0;
 }

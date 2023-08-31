@@ -1,8 +1,6 @@
-#define _CRT_SECURY_NO_WARNINGS
-#include <iostream>
 #include <stdio.h>
 #include <string.h>
-void main()
+int main(void)
 {
 // A variável texto1 é inicializada com a cadeia
 // de caracteres PROGRAMA DE COMPUTADOR
@@ -44,5 +42,5 @@ j = j + 1;
 }
 // Mostra o conteúdo da cadeia gerada
 printf("\nCadeia gerada = %s\n", texto3);
-system("pause");
+return 0;
 }
