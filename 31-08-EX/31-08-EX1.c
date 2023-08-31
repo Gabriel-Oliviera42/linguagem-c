@@ -11,8 +11,5 @@ int main(){
     strupr(palavra);
     printf("\nmaiuscula: %s\n", palavra);
 
-    strlwr(palavra);
-    printf("\nminuscula: %s\n", palavra);
-
     return 0;
 }
