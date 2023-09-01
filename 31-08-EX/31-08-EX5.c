@@ -7,13 +7,23 @@
 int main(){
 
     char palavra1[50] = {"EU SOU ALUNO DA ESCOLA"}, palavra2[50];
-    int N, I;
+    int N, I, k;
 
     N = strlen(palavra1);
+
+    printf("%d", N);
     
-    for (I = 0; I<N; I++) {
-        if 
+    for (I = 0; I <N; I++) {
+        k = 0;
+        if (palavra1[I] == ' ') {
+            k = I-1;
+            for (I = 0; I < k; I++) {
+            palavra2[I] = palavra1[I];
+            }
+        }
     }
+    printf("%s", palavra2);
+    printf("%s", palavra1);
 
     return 0;
 }
