@@ -1,29 +1,32 @@
-//Faça um programa que receba uma frase e troque a palavra ALUNO por ESTUDANTE e a palavra ESCOLA por UNIVERSIDADE.
-
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
-int main(){
+int main() {
+    char frase[100];
+    char novaFrase[100];
+    char *palavra;
+    int posicao = 0;
 
-    char palavra1[50] = {"EU SOU ALUNO DA ESCOLA"}, palavra2[50];
-    int N, I, k;
+    printf("Digite uma frase: ");
+    gets(frase);
 
-    N = strlen(palavra1);
+    palavra = strtok(frase, " ");
 
-    printf("%d", N);
-    
-    for (I = 0; I <N; I++) {
-        k = 0;
-        if (palavra1[I] == ' ') {
-            k = I-1;
-            for (I = 0; I < k; I++) {
-            palavra2[I] = palavra1[I];
-            }
+    while (palavra != NULL) {
+        if (strcmp(palavra, "ALUNO") == 0) {
+            strcat(novaFrase, "ESTUDANTE ");
+        } else if (strcmp(palavra, "ESCOLA") == 0) {
+            strcat(novaFrase, "UNIVERSIDADE ");
+        } else {
+            strcat(novaFrase, palavra);
+            strcat(novaFrase, " ");
         }
+        palavra = strtok(NULL, " ");
     }
-    printf("%s", palavra2);
-    printf("%s", palavra1);
+
+    novaFrase[strlen(novaFrase) - 1] = '\0';
+
+    printf("Saída: %s\n", novaFrase);
 
     return 0;
 }
