@@ -1,32 +1,24 @@
 #include <stdio.h>
 #include <string.h>
 
-int main() {
-    char frase[100];
-    char novaFrase[100];
-    char *palavra;
-    int posicao = 0;
-
+int main(void) {
+    char frase[100]; 
     printf("Digite uma frase: ");
     gets(frase);
 
-    palavra = strtok(frase, " ");
+    char *palavra;
+    palavra = strtok(frase, " "); // Divide a frase em palavras com base nos espaços em branco
 
-    while (palavra != NULL) {
+    while (palavra != NULL) { // vai dar as sub strings até chegar ao final
         if (strcmp(palavra, "ALUNO") == 0) {
-            strcat(novaFrase, "ESTUDANTE ");
+            printf("ESTUDANTE ");
         } else if (strcmp(palavra, "ESCOLA") == 0) {
-            strcat(novaFrase, "UNIVERSIDADE ");
+            printf("UNIVERSIDADE ");
         } else {
-            strcat(novaFrase, palavra);
-            strcat(novaFrase, " ");
+            printf("%s ", palavra);
         }
-        palavra = strtok(NULL, " ");
+        palavra = strtok(NULL, " "); // coloca os espaços de volta
     }
-
-    novaFrase[strlen(novaFrase) - 1] = '\0';
-
-    printf("Saída: %s\n", novaFrase);
 
     return 0;
 }
