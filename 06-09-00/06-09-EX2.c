@@ -3,13 +3,23 @@
 
 int main(){
 
-    float notas[10] = {7,5,3,5,8,6,3,1,3,7};
-    int I;
+    float notas[10];
+    int i, cont;
 
-    for(I = 0; I < 10; I++) {
-        if(notas[I] >= 7.5) {
-            printf("%.1f \n",notas[I]);
+    for(i = 0; i < 10; i++) {
+        printf("Digite um valor: ");
+        scanf("%f",&notas[i]);
+    }
+
+    cont = 0;
+
+    for(i = 0; i < 10; i++) {
+        if(notas[i] >= 7.5) {
+            printf("\n%.1f",notas[i]);
+            cont++;
         }
     }
+
+    printf("%d",cont);
     return 0;
 }

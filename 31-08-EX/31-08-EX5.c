@@ -13,7 +13,7 @@ int main(void) {
         if (strcmp(palavra, "ALUNO") == 0) {
             printf("ESTUDANTE ");
         } else if (strcmp(palavra, "ESCOLA") == 0) {
-            printf("UNIVERSIDADE ");
+            printf("UNIVERSIDADE ");    
         } else {
             printf("%s ", palavra);
         }
