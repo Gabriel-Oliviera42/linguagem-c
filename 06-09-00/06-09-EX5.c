@@ -11,7 +11,7 @@ int main() {
 
     for (i = 0; i < 7; i++) {
         for (j = i + 1; j < 8; j++) {
-            if (vetor[i] > vetor[j]) {
+            if (vetor[i] > vetor[j]) {  // só troca de lugar usando um auxiliar
                 temp = vetor[i];
                 vetor[i] = vetor[j];
                 vetor[j] = temp;
