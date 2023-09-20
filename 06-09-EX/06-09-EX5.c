@@ -2,8 +2,8 @@
 
 int main() {
     int vetor[8];
-    int i, j, temp;
-
+    int i, j, aux;
+    
     for (i = 0; i < 8; i++) {
         printf("digite o numero %d: ", i + 1);
         scanf("%d", &vetor[i]); 
@@ -12,9 +12,9 @@ int main() {
     for (i = 0; i < 7; i++) {
         for (j = i + 1; j < 8; j++) {
             if (vetor[i] > vetor[j]) {  // só troca de lugar usando um auxiliar
-                temp = vetor[i];
+                aux = vetor[i];
                 vetor[i] = vetor[j];
-                vetor[j] = temp;
+                vetor[j] = aux;
             }
         }
     }

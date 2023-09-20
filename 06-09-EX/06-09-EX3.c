@@ -9,7 +9,7 @@ int main() {
 
     for (i = 0; i < 10; i++) {
         printf("\nDigite uma letra: "); 
-        scanf(" %c", &respostas[i]); 
+        scanf(" %s", &respostas[i]); 
     }
 
     for (i = 0; i < 10; i++) {
