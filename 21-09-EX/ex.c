@@ -13,21 +13,19 @@ e escreva a quantidade total vendida em todo o país.    */
 #include <stdlib.h>
 
 int main(void) {
-    int mat [4][5] = {
-        //C1  C2  C3  C4  C5
-        {150,1150,900,1500,400}, //L1
-        {180,980,1100,2300,650}, //L2
-        {140,1000,950,2100,500}, //L3
-        {210,1600,1400,2600,840} //L4
+    int vendas [4][5] = {
+    {150,1150,900,1500,400},
+    {180,980,1100,2300,650},
+    {140,1000,950,2100,500},
+    {210,1600,1400,2600,840}
     };
-    int j, i, SOMA = 0;
+    int i,j,soma=0;
 
-    for (i = 0; i < 4; i++) {
-        for (j = 0; j < 5; j++) {
-            SOMA += mat[i][j];
-        }
-    }
-
-    printf("Soma: %d", SOMA);
+    for(i=0;i<4;i++){
+        for(j=0;j<5;j++){
+           soma += vendas[i][j] ;
+        }            
+    }    
+    printf("%d",soma);
     return 0;
 }
