@@ -19,17 +19,10 @@ int main(void) {
     int MatrizTransposta[2][3];
     int i, j;
 
-    // Calcula a matriz transposta
-    for (i = 0; i < 2; i++) {
-        for (j = 0; j < 3; j++) {
-            MatrizTransposta[i][j] = Matriz[j][i];
-        }
-    }
-
-    // Imprime a matriz transposta
     printf("Matriz Transposta:\n");
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 3; j++) {
+            MatrizTransposta[i][j] = Matriz[j][i];
             printf("%d ", MatrizTransposta[i][j]);
         }
         printf("\n");
@@ -37,3 +30,4 @@ int main(void) {
 
     return 0;
 }
+    
