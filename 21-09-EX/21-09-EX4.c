@@ -21,17 +21,64 @@ origem e nome da cidade de destino);
 A maior distância e em que percurso se encontra (nome da cidade de origem e
 nome da cidade de destino).
 
-   0   1   2   3   4    
-0  0  250 100 300 200
-1 250  0  360  75  80
-2 100 360  0  250 800
-3 300  75 250  0  530
-4 200  80 800 530  0
+   A   B   C   D   E    
+A  0  250 100 300 200
+B 250  0  360  75  80
+C 100 360  0  250 800
+D 300  75 250  0  530
+E 200  80 800 530  0
 
 */
 
 #include <stdio.h>
 #include <string.h>
+
+int main() {
+    // Declarando um vetor de strings para armazenar nomes de cidades
+    char cidades[5][30]; // Suponhamos que o nome de cada cidade tenha no máximo 30 caracteres
+
+    // Preenchendo o vetor com nomes de cidades
+    strcpy(cidades[0], "Nova York"); // A
+    strcpy(cidades[1], "Paris");     // B
+    strcpy(cidades[2], "Tóquio");    // C
+    strcpy(cidades[3], "Londres");   // D
+    strcpy(cidades[4], "Roma");      // E
     
+    int distancias[5][5] = {
+        {0, -1, -1, -1, -1},  // Cidade 1
+        {-1, 0, -1, -1, -1},  // Cidade 2
+        {-1, -1, 0, -1, -1},  // Cidade 3
+        {-1, -1, -1, 0, -1},  // Cidade 4
+        {-1, -1, -1, -1, 0}   // Cidade 5
+    };
+
+    int i, j;  
+
+    // Imprimindo a matriz de distâncias
+    printf("Matriz de Distâncias:\n");
+    for (i = 0; i < 5; i++) {
+        for (j = i; j < 5; j++) {
+            if (distancias[i][j] == -1) {
+                printf("distancia de %d ate %d", i, j); 
+                scanf("%d",distancias[i][j],distancias[j][i]);
+            } else {
+                printf("%d ", distancias[i][j]);
+            }
+        }
+        printf("\n");
+    }
+
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++) {
+                printf("%d ", distancias[i][j]); 
+        }
+        printf("\n");
+    }
+
+    // Imprimindo os nomes das cidades
+    for (i = 0; i < 5; i++) {
+        printf("Cidade %d: %s\n", i + 1, cidades[i]);
+    }
+
     return 0;
 }
