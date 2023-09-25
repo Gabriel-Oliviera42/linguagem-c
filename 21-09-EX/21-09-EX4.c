@@ -34,39 +34,52 @@ E 200  80 800 530  0
 #include <string.h>
 
 int main() {
-    // Declarando um vetor de strings para armazenar nomes de cidades
-    char cidades[5][30]; // Suponhamos que o nome de cada cidade tenha no máximo 30 caracteres
+    char cidades[5][30]; // Supondo que o nome de cada cidade tenha até 30 caracteres
 
     // Preenchendo o vetor com nomes de cidades
-    strcpy(cidades[0], "Nova York"); // A
-    strcpy(cidades[1], "Paris");     // B
-    strcpy(cidades[2], "Tóquio");    // C
-    strcpy(cidades[3], "Londres");   // D
-    strcpy(cidades[4], "Roma");      // E
+    strcpy(cidades[0], "Areado");      // 0
+    strcpy(cidades[1], "Alfenas");     // 1
+    strcpy(cidades[2], "Alterosa");    // 2
+    strcpy(cidades[3], "Machado");     // 3
+    strcpy(cidades[4], "Divisa Nova"); // 4
     
     int distancias[5][5] = {
-        {0, -1, -1, -1, -1},  // Cidade 1
-        {-1, 0, -1, -1, -1},  // Cidade 2
-        {-1, -1, 0, -1, -1},  // Cidade 3
-        {-1, -1, -1, 0, -1},  // Cidade 4
-        {-1, -1, -1, -1, 0}   // Cidade 5
+        {0, 250, 100, 300, 200},  // Cidade 1
+        {250, 0, 360, 75, 80},  // Cidade 2
+        {100, 360, 0, 250, 800},  // Cidade 3
+        {300, 75, 250, 0, 530},  // Cidade 4
+        {200, 80, 800, 530, 0}   // Cidade 5
     };
 
-    int i, j;  
+    /*
+    int distancias[5][5] = {
+        {0, 1, 1, 1, 1},  // Cidade 1
+        {1, 0, 1, 1, 1},  // Cidade 2
+        {1, 1, 0, 1, 1},  // Cidade 3
+        {1, 1, 1, 0, 1},  // Cidade 4
+        {1, 1, 1, 1, 0}   // Cidade 5
+    };
 
-    // Imprimindo a matriz de distâncias
-    printf("Matriz de Distâncias:\n");
+    // Imprimindo a matriz de distâncias:
+
+    printf("Matriz de Distancias:\n");
     for (i = 0; i < 5; i++) {
         for (j = i; j < 5; j++) {
-            if (distancias[i][j] == -1) {
-                printf("distancia de %d ate %d", i, j); 
-                scanf("%d",distancias[i][j],distancias[j][i]);
-            } else {
-                printf("%d ", distancias[i][j]);
+            if (distancias[i][j] == 1) {
+                printf("distancia de %d ate %d :", i, j); 
+                scanf("%d",&distancias[i][j]);
+                distancias[j][i] = distancias[i][j];
             }
         }
         printf("\n");
     }
+    */
+
+    int i, j;  
+
+    /*  
+    
+    coloca na tela a matriz:
 
     for (i = 0; i < 5; i++) {
         for (j = 0; j < 5; j++) {
@@ -75,9 +88,21 @@ int main() {
         printf("\n");
     }
 
-    // Imprimindo os nomes das cidades
+    coloca os nomes das cidades:
+
     for (i = 0; i < 5; i++) {
         printf("Cidade %d: %s\n", i + 1, cidades[i]);
+    }
+
+    */
+
+   for (i = 0; i < 5; i++) {
+        for (j = i; j < 5; j++) {
+                if(distancias[i][j] <= 250) {
+                    printf("o percurso de %d ate %d e menos de 250Km\n",i,j);
+                }
+        }
+        printf("\n");
     }
 
     return 0;
