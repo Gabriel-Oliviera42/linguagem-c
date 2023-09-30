@@ -1,31 +1,24 @@
-//Funções com Passagem de Parâmetros e Sem Retorno
-
 #include <stdio.h>
 
-// Função que soma dois números e exibe o resultado
-void soma(int a, int b) {
-    int resultado = a + b;
-    printf("A soma de %d e %d é %d\n", a, b, resultado);
-}
-
-// Função que conta quantas vezes um caractere aparece em uma string
-void contarCaractere(char str[], char ch) {
-    int cont = 0;
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] == ch) {
-            cont++;
-        }
+double calcularMedia(int n) {
+    int soma = 0;
+    int i;  
+    for (i = 0; i < n; i++) {
+        int num;
+        printf("Digite o número %d: ", i + 1);
+        scanf("%d", &num);
+        soma += num;
     }
-    printf("O caractere '%c' aparece %d vezes na string.\n", ch, cont);
+    return (double)soma / n;
 }
 
 int main() {
-    int num1 = 5, num2 = 7;
-    soma(num1, num2);
+    int n;
+    printf("Quantos números você deseja inserir? ");
+    scanf("%d", &n);
 
-    char texto[] = "exemplo de texto";
-    char caractere = 'e';
-    contarCaractere(texto, caractere);
+    double media = calcularMedia(n);
+    printf("A média dos números é: %.2lf\n", media);
 
     return 0;
 }

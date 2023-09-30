@@ -1,19 +1,20 @@
 #include <stdio.h>
 
 int main() {
-    int num1 = 5, num2 = 7;
-    int resultado_soma = num1 + num2;
-    printf("A soma de %d e %d é %d\n", num1, num2, resultado_soma);
+    int n;
+    printf("Quantos números você deseja inserir? ");
+    scanf("%d", &n);
 
-    char texto[] = "exemplo de texto";
-    char caractere = 'e';
-    int cont = 0;
-    for (int i = 0; texto[i] != '\0'; i++) {
-        if (texto[i] == caractere) {
-            cont++;
-        }
+    int soma = 0, i;
+    for (i = 0; i < n; i++) {
+        int num;
+        printf("Digite o número %d: ", i + 1);
+        scanf("%d", &num);
+        soma += num;
     }
-    printf("O caractere '%c' aparece %d vezes na string.\n", caractere, cont);
+
+    double media = (double)soma / n;
+    printf("A média dos números é: %.2lf\n", media);
 
     return 0;
 }
