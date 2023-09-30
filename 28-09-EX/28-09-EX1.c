@@ -14,4 +14,4 @@ printf("\nDigite o segundo numero: ");
 scanf("%d%*c",&b);
 soma(a,b);
 return 0;
-}
+}   
