@@ -1,29 +1,18 @@
-#include <stdio.h>
+//Função Sem Passagem de Parâmetros e Com Retorno
 
-// Função para calcular a média de três números inteiros
-float calcularMedia(int num1, int num2, int num3) {
-    return (num1 + num2 + num3) / 3.0;
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Função que gera um número aleatório entre 1 e 100 e o retorna
+int gerarNumeroAleatorio() {
+    srand(time(NULL));
+    return (rand() % 100) + 1;
 }
 
 int main() {
-    int num1, num2, num3;
-    float media;
-
-    // Solicita ao usuário que insira três números
-    printf("Digite o primeiro número: ");
-    scanf("%d", &num1);
-
-    printf("Digite o segundo número: ");
-    scanf("%d", &num2);
-
-    printf("Digite o terceiro número: ");
-    scanf("%d", &num3);
-
-    // Chamando a função para calcular a média
-    media = calcularMedia(num1, num2, num3);
-
-    // Exibe o resultado
-    printf("A média dos três números é: %.2f\n", media);
+    int numeroAleatorio = gerarNumeroAleatorio();
+    printf("Número aleatório gerado: %d\n", numeroAleatorio);
 
     return 0;
 }
