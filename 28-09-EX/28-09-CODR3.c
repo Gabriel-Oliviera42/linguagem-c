@@ -1,31 +1,39 @@
-//Passagem de Parâmetro por Valor e por Referência
-
 #include <stdio.h>
 
-// Função que retorna o quadrado de um número (passagem por valor)
-int quadrado(int num) {
-    return num * num;
+// Função para trocar os valores de duas variáveis usando passagem por valor
+void trocarPorValor(int x, int y) {
+    int temp = x;
+    x = y;
+    y = temp;
 }
 
-// Função que calcula a média dos valores de um vetor (passagem por referência)
-void calcularMedia(int vetor[], int tamanho, double *media) {
-    int soma = 0;
-    for (int i = 0; i < tamanho; i++) {
-        soma += vetor[i];
-    }
-    *media = (double)soma / tamanho;
+// Função para trocar os valores de duas variáveis usando passagem por referência
+void trocarPorReferencia(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
 
 int main() {
-    int num = 5;
-    int resultado = quadrado(num);
-    printf("O quadrado de %d é %d\n", num, resultado);
+    int a, b;
 
-    int numeros[] = {10, 20, 30, 40, 50};
-    int tamanho = 5;
-    double media;
-    calcularMedia(numeros, tamanho, &media);
-    printf("A média dos valores é %.2lf\n", media);
+    printf("Digite o valor de a: ");
+    scanf("%d", &a);
+
+    printf("Digite o valor de b: ");
+    scanf("%d", &b);
+
+    printf("Valores antes da troca: a = %d, b = %d\n", a, b);
+
+    // Chame uma das funções abaixo para realizar a troca
+
+    // Para trocar usando passagem por valor:
+    // trocarPorValor(a, b);
+
+    // Para trocar usando passagem por referência:
+    trocarPorReferencia(&a, &b);
+
+    printf("Valores após a troca: a = %d, b = %d\n", a, b);
 
     return 0;
 }

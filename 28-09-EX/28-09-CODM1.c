@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int main() {
+
     int n;
     printf("Quantos números você deseja inserir? ");
     scanf("%d", &n);

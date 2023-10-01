@@ -1,18 +1,22 @@
 #include <stdio.h>
 
 int main() {
-    int num = 5;
-    int resultado_quadrado = num * num;
-    printf("O quadrado de %d é %d\n", num, resultado_quadrado);
+    int a, b;
 
-    int numeros[] = {10, 20, 30, 40, 50};
-    int tamanho = 5;
-    int soma = 0;
-    for (int i = 0; i < tamanho; i++) {
-        soma += numeros[i];
-    }
-    double media = (double)soma / tamanho;
-    printf("A média dos valores é %.2lf\n", media);
+    printf("Digite o valor de a: ");
+    scanf("%d", &a);
+
+    printf("Digite o valor de b: ");
+    scanf("%d", &b);
+
+    printf("Valores antes da troca: a = %d, b = %d\n", a, b);
+
+    // Troca os valores de a e b sem o uso de funções
+    int temp = a;
+    a = b;
+    b = temp;
+
+    printf("Valores após a troca: a = %d, b = %d\n", a, b);
 
     return 0;
 }
