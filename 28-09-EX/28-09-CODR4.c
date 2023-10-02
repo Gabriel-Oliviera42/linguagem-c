@@ -11,7 +11,7 @@ unsigned long long calcularFatorial(int num) {
 
 int main() {
     int numero;
-    printf("Digite um número inteiro não negativo: ");
+    printf("Digite um numero inteiro nao negativo: ");
     scanf("%d", &numero);
 
     if (numero < 0) {
