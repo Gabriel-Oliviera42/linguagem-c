@@ -3,9 +3,10 @@
 #include <time.h>
 
 // Função sem parâmetros, com retorno
+
 int obter_numero_aleatorio() {
     srand(time(NULL)); // Inicializa a semente para números aleatórios
-    return rand() % 100 + 1; // Retorna um número aleatório entre 1 e 100
+    return rand() % 10 + 1; // Retorna um número aleatório entre 1 e 10
 }
 
 int main() {
