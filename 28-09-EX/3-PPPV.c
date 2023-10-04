@@ -1,17 +1,25 @@
 #include <stdio.h>
-void soma(int a, int b)
-{
-int s; // variável local da sub-rotina soma
-s = a + b;
-printf("\nSoma = %d",s);
+
+// Passagem de Parâmetro por Valor:
+
+void duplica(int x) {
+    // Dobra o valor do parâmetro
+    x = x * 2;
+    
+    // Imprime o dobro
+    printf("O dobro do numero e: %d\n", x);
 }
-int main()
-{
-int a, b; // variáveis locais da sub-rotina main
-printf("\nDigite o primeiro numero: ");
-scanf("%d%*c",&a);
-printf("\nDigite o segundo numero: ");
-scanf("%d%*c",&b);
-soma(a,b);
-return 0;
-}   
+
+// ---------------- COMEÇA O CÓDIGO PRINCIPAL ----------------
+
+int main() {
+    int numero = 10;
+    
+    // Chama a função duplica com o valor de numero
+    duplica(numero);
+    
+    // Imprime o valor original
+    printf("O numero original e: %d\n", numero);
+    
+    return 0;
+}

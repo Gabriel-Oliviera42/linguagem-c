@@ -1,17 +1,22 @@
 #include <stdio.h>
-void soma(int a, int b)
-{
-int s; // variável local da sub-rotina soma
-s = a + b;
-printf("\nSoma = %d",s);
+
+// Passagem de Parâmetro por Referência:
+
+void dobraPorReferencia(int *x) {
+    // Dobra o valor referenciado pelo ponteiro
+    *x = (*x) * 2;
 }
-int main()
-{
-int a, b; // variáveis locais da sub-rotina main
-printf("\nDigite o primeiro numero: ");
-scanf("%d%*c",&a);
-printf("\nDigite o segundo numero: ");
-scanf("%d%*c",&b);
-soma(a,b);
-return 0;
-}   
+
+// ---------------- COMEÇA O CÓDIGO PRINCIPAL ----------------
+
+int main() {
+    int numero = 7;
+    
+    // Chama a função dobraPorReferencia com o endereço de numero
+    dobraPorReferencia(&numero);
+    
+    // Imprime o valor dobrado
+    printf("O numero dobrado e: %d\n", numero);
+    
+    return 0;
+}

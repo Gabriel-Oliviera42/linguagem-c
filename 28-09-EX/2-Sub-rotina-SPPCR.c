@@ -2,15 +2,23 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Função sem parâmetros, com retorno
+// Sub-rotina - Funções Sem Passagem de Parâmetros e Com Retorno:
 
-int obter_numero_aleatorio() {
+int obterNumeroAleatorio() {
     srand(time(NULL)); // Inicializa a semente para números aleatórios
-    return rand() % 10 + 1; // Retorna um número aleatório entre 1 e 10
+    
+    // Gera um número aleatório entre 1 e 10
+    return rand() % 10 + 1;
 }
 
+// ---------------- COMEÇA O CÓDIGO PRINCIPAL ----------------
+
 int main() {
-    int numero = obter_numero_aleatorio();
+    // Chama a função para obter um número aleatório
+    int numero = obterNumeroAleatorio();
+    
+    // Imprime o número aleatório
     printf("Numero aleatorio: %d\n", numero);
+    
     return 0;
-}   
+}
