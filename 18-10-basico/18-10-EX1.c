@@ -1,8 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//------------Declarando variaveis Globais------------
+
 int escolha;
 int r[5];
+
+void rep(int vet1[5], int vet2[5]){
+    int i;
+    for(i = 0; i < 5; i++) {
+                printf("\ndigite os numeros que vão ser somados\n\n");
+                printf("digite o %i numero do primeiro vetor: ",i+1);
+                scanf("%i", &vet1[i]);
+                printf("digite o %i numero do segundo vetor: ",i+1);
+                scanf("%i", &vet2[i]);
+            }
+}
 
 void somar(int vet1[5], int vet2[5]) {
     int i;
@@ -52,13 +65,7 @@ int main(void){
         switch (escolha)
         {
         case 1:
-            for(i = 0; i < 5; i++) {
-                printf("\ndigite os numeros que vão ser somados\n\n");
-                printf("digite o %i numero do primeiro vetor: ",i+1);
-                scanf("%i", &vet1[i]);
-                printf("digite o %i numero do segundo vetor: ",i+1);
-                scanf("%i", &vet2[i]);
-            }
+            rep(vet1, vet2);
             somar(vet1, vet2);
             printf("\n");
             for(i = 0; i < 5; i++) {
@@ -66,13 +73,7 @@ int main(void){
             }
             break;
         case 2:
-            for(i = 0; i < 5; i++) {
-                printf("\ndigite os numeros que vão ser subtraidos\n\n");
-                printf("digite o %i numero do primeiro vetor: ",i+1);
-                scanf("%i", &vet1[i]);
-                printf("digite o %i numero do segundo vetor: ",i+1);
-                scanf("%i", &vet2[i]);
-            }
+            rep(vet1, vet2);
             subtrair(vet1, vet2);
             printf("\n");
             for(i = 0; i < 5; i++) {
@@ -81,14 +82,8 @@ int main(void){
           
             break;
         case 3:
-            for(i = 0; i < 5; i++) {
-                printf("\ndigite os numeros que vão ser subtraidos\n\n");
-                printf("digite o %i numero do primeiro vetor: ",i+1);
-                scanf("%i", &vet1[i]);
-                printf("digite o %i numero do segundo vetor: ",i+1);
-                scanf("%i", &vet2[i]);
-            }
-              multiplicar(vet1, vet2);
+            rep(vet1, vet2);
+            multiplicar(vet1, vet2);
             printf("\n");
             for(i = 0; i < 5; i++) {
               printf("multiplicacao: %d\n",r[i]);
@@ -96,13 +91,7 @@ int main(void){
             
             break;
         case 4:
-            for(i = 0; i < 5; i++) {
-                printf("\ndigite os numeros que vão ser subtraidos\n\n");
-                printf("digite o %i numero do primeiro vetor: ",i+1);
-                scanf("%i", &vet1[i]);
-                printf("digite o %i numero do segundo vetor: ",i+1);
-                scanf("%i", &vet2[i]);
-            }
+            rep(vet1, vet2);
             dividir(vet1, vet2);
             printf("\n");
             for(i = 0; i < 5; i++) {
