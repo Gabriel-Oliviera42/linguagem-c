@@ -9,14 +9,14 @@ int r[5];
 void rep(int vet1[5], int vet2[5]){
     int i;
     for(i = 0; i < 5; i++) {
-                printf("\ndigite os numeros que vão ser somados\n\n");
-                printf("digite o %i numero do primeiro vetor: ",i+1);
-                scanf("%i", &vet1[i]);
-                printf("digite o %i numero do segundo vetor: ",i+1);
-                scanf("%i", &vet2[i]);
-            }
+        printf("\ndigite os numeros que vão ser somados\n\n");
+        printf("digite o %i numero do primeiro vetor: ",i+1);
+        scanf("%i", &vet1[i]);
+        printf("digite o %i numero do segundo vetor: ",i+1);
+        scanf("%i", &vet2[i]);
+    }
 }
-
+    
 void somar(int vet1[5], int vet2[5]) {
     int i;
     for(i = 0; i < 5; i++) {
