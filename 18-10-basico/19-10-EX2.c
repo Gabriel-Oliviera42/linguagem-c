@@ -61,7 +61,7 @@ struct Conta contas[15];       // Definindo um array de estruturas Conta para ar
         scanf("%d", &op);
         printf("----------------------------------------------------------------\n");
         
-        // ------------ Em caso de não digitar os valores certos ---------- 
+        // ------------ Em caso de não digitar os valores certos ----------- 
 
         if (op < 1 || op > 4) {
             printf("Opcao invalida\n");
