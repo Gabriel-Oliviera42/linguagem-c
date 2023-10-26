@@ -46,110 +46,113 @@ struct Reservas {        //|Reservas| Espaço |
                          //+--------+--------+ 
 
 
-
 int main() {
-
     struct Reservas reserva[60];
-    int avi[4] = {0,0,0,0};
-    int lug[4] = {0,0,0,0};
-    int i;                    
+    int avi[4] = {0, 0, 0, 0};
+    int lug[4] = {0, 0, 0, 0};
+    int i;
     int op;
     int pos_livre = 0;
     int achou;
     int numero;
     int posi;
-    char nome;  
-
-    // -------------- zerando as variaveis da estrutura --------------- 
+    char nome[30];
 
     for (i = 0; i < 60; i++) {
         reserva[i].num_avi = 0;
         strcpy(reserva[i].nome, "");
     }
 
-    // ------------------- faz isso até digitar 6 ------------------- 
-    
-    // Loop principal do programa
-
     do {
         printf("----------------------------------------------------------------\n");
-        printf("Menu de Opcoes\n");
-        printf("1 - Cadastrar o numero dos avioes.\n");
-        printf("2 - Cadastrar o numero de lugares disponiveis em cada aviao\n");
-        printf("3 - Reservar passagem.\n");
+        printf("Menu de Opcoes\n"); 
+        printf("1 - Cadastrar o numero dos avioes.\n");                            // Pede ao usuario os nomes de cada avião, normalmente usarems números
+        printf("2 - Cadastrar o numero de lugares disponiveis em cada aviao\n");   // Pede ao usuario para colocar quantos lugares vagos tem em cada avião, até no maximo 60
+        printf("3 - Reservar passagem.\n");                                        // 
         printf("4 - Consultar por aviao.\n");
-        printf("5. Consultar por passageiro.\n");
-        printf("6. Finalizar.\n");
+        printf("5 - Consultar por passageiro.\n");
+        printf("6 - Finalizar.\n");
         printf("Digite sua opcao: ");
         scanf("%d", &op);
         printf("----------------------------------------------------------------\n");
-        
+
         switch (op) {
-        case 1:
-            for(i = 0; i < 4; i++) {
-                printf("Digite o %dO Aviao: ",i+1);
-                scanf("%d",&avi[i]);
-            }
-            break;
-        case 2:
-            for(i = 0; i < 4; i++) {
-                printf("Digite o número de lugares disponíveis no %dO aviao",i+1);
-                scanf("%d",&lug[i]);
-            }
-            break;
-        case 3:
-            printf("Digite o número do avião no qual deseja efetuar a reserva");
-            scanf("%d",&lug[i]);
-            if (pos_livre > 60) {
-                printf("Reservas em todos os aviões esgotadas");
-            } else {
-                achou = 0;
-                for(i = 0; i <4; i++) {
-                    if(avi[i] == numero) {
-                        achou = 1;
-                        posi = 1
+            case 1:
+                for (i = 0; i < 4; i++) {
+                    printf("Digite o %d* Aviao: ", i + 1);
+                    scanf("%d", &avi[i]);
+                }
+                break;
+            case 2:
+                for (i = 0; i < 4; i++) {
+                    printf("Digite o número de lugares disponíveis no %d* aviao: ", i + 1);
+                    scanf("%d", &lug[i]);
+                }
+                break;
+            case 3:
+                printf("Digite o numero do aviao no qual deseja efetuar a reserva: ");
+                scanf("%d", &numero);
+                if (pos_livre >= 60) {
+                    printf("Reservas em todos os avioes esgotadas\n");
+                } else {
+                    achou = 0;
+                    for (i = 0; i < 4; i++) {
+                        if (avi[i] == numero) {
+                            achou = 1;
+                            posi = i;
+                            break;
+                        }
+                    }
+                    if (achou == 0) {
+                        printf("Este aviao nao existe\n");
+                    } else if (lug[posi] == 0) {
+                        printf("Aviao lotado\n");
+                    } else {
+                        printf("Digite o nome do passageiro: ");
+                        scanf("%s", nome);
+                        reserva[pos_livre].num_avi = numero;
+                        strcpy(reserva[pos_livre].nome, nome);
+                        printf("Reserva efetuada com sucesso\n");
+                        pos_livre++;
+                        lug[posi]--;
                     }
                 }
-            }
-            
-            if(achou = 0) {
-                printf("Este avião não existe")
-            } else {
-                
-            }
-
-
-SE achou = 0
-ENTÃO ESCREVA “Este avião não existe”
-SENÃO SE lug[posi] = 0
-ENTÃO ESCREVA “Avião lotado”
-SENÃO INÍCIO
-ESCREVA “Digite o nome do passageiro”
-LEIA nome
-reservas[pos_livre].num_avi ← numero
-reservas[pos_livre].nome ← nome
-ESCREVA “Reserva efetuada com sucesso”
-pos_livre ← pos_livre + 1
-lug[posi] ← lug[posi] - 1
-FIM
-FIM
-FIM
-            break;
-        case 4:
-            /* code */
-            break;
-        case 5:
-            /* code */
-            break;
-        case 6:
-            /* code */
-            break;    
-        default:
-            break;
+                break;
+            case 4:
+                printf("Digite o numero do aviao para consultar as reservas: ");
+                scanf("%d", &numero);
+                achou = 0;
+                for (i = 0; i < pos_livre; i++) {
+                    if (reserva[i].num_avi == numero) {
+                        printf("%s\n", reserva[i].nome);
+                        achou = 1;
+                    }
+                }
+                if (achou == 0) {
+                    printf("Nenhuma reserva esta cadastrada para este aviao\n");
+                }
+                break;
+            case 5:
+                printf("Digite o nome do passageiro para consultar as reservas: ");
+                scanf("%s", nome);
+                achou = 0;
+                for (i = 0; i < pos_livre; i++) {
+                    if (strcmp(reserva[i].nome, nome) == 0) {
+                        printf("%d\n", reserva[i].num_avi);
+                        achou = 1;
+                    }
+                }
+                if (achou == 0) {
+                    printf("Nenhuma reserva esta cadastrada para este nome\n");
+                }
+                break;
+            case 6:
+                printf("Encerrando o programa.\n");
+                break;
+            default:
+                break;
         }
-        
     } while (op != 6);
-
 
     return 0;
 }
