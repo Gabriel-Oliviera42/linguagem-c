@@ -2,6 +2,7 @@
 
 typedef char Elem;  // Define o tipo de dado 'Elem' como um caractere
 
+
 // ------------------------ Definição da estrutura da pilha ------------------------ 
 typedef struct pilha {
   int MAX;     // Capacidade máxima da pilha
@@ -10,6 +11,7 @@ typedef struct pilha {
 } *Pilha;      // Definição do ponteiro para a estrutura
 
 // ---------------- Função para criar uma nova pilha com tamanho 'tam' ---------------- 
+
 Pilha criapilha(int tam) {
   Pilha aux = new pilha;      // Aloca memória para a estrutura da pilha
   aux->MAX = tam;             // Define a capacidade máxima da pilha como 'tam'
@@ -19,6 +21,7 @@ Pilha criapilha(int tam) {
 }
 
 // ---------------- Função para adicionar um elemento 'x' à pilha 'P' ----------- 
+
 void push(Pilha P, Elem x) {
   if (P->topo < P->MAX) {  // Verifica se a pilha não está cheia
     P->item[P->topo] = x;  // Adiciona o elemento 'x' no topo da pilha
@@ -27,6 +30,7 @@ void push(Pilha P, Elem x) {
 }
 
 // ----------- Função para remover e retornar o elemento no topo da pilha 'P' ----------- 
+
 Elem pop(Pilha P) {
   if (P->topo > 0) {          // Verifica se a pilha não está vazia
     P->topo--;                // Decrementa o topo para apontar para o elemento anterior
@@ -35,13 +39,15 @@ Elem pop(Pilha P) {
 }
 
 // ---------------------------- Função principal ---------------------------- 
+
 int main(void) {
+  
   Pilha P1 = criapilha(20);  // Cria uma pilha com capacidade para 20 elementos
 
   push(P1, 'a');             // Adiciona 'a' à pilha
   push(P1, 'b');             // Adiciona 'b' à pilha
 
-  printf("%c\n", pop(P1));   // Remove e imprime o elemento no topo da pilha
+  printf("%c\n", pop(P1));   // monstra no terminal
 
   return 0;
 }
