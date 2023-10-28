@@ -181,37 +181,68 @@ int main(void) {
 */
 
 /*
+
+------------------------------------------------------------------
+
 1.1
-(a) Não é um conjunto, pois um conjunto não permite repetições, e nessa estrutura pode haver repetições de elementos.
+(a) Não é um conjunto, pois um conjunto não permite repetições, 
+e nessa estrutura pode haver repetições de elementos.
 
-(b) Não é uma lista, pois uma lista geralmente tem uma estrutura bem definida, como lista encadeada ou lista duplamente encadeada.
+(b) Não é uma lista, pois uma lista geralmente tem uma estrutura 
+bem definida, como lista encadeada ou lista duplamente encadeada.
 
-(c) Não é uma árvore, pois na estrutura não existe um conceito de hierarquia ou ordenação entre os elementos.
+(c) Não é uma árvore, pois na estrutura não existe um conceito 
+de hierarquia ou ordenação entre os elementos.
+
+------------------------------------------------------------------
 
 1.2
-(a) Estradas entre cidades de um mapa podem ser representadas por um grafo.
+(a) Estradas entre cidades de um mapa podem ser representadas 
+por um grafo.
 
-(b) A estrutura organizacional de uma empresa pode ser representada por uma árvore.
+(b) A estrutura organizacional de uma empresa pode ser 
+representada por uma árvore.
 
-(c) A fila de impressão em um sistema operacional pode ser representada por uma fila (FIFO - first in, first out).
+(c) A fila de impressão em um sistema operacional pode ser 
+representada por uma fila (FIFO - first in, first out).
 
-(d) A estrutura de diretórios em um sistema operacional pode ser representada por uma árvore.
+(d) A estrutura de diretórios em um sistema operacional 
+pode ser representada por uma árvore.
+
+------------------------------------------------------------------
 
 1.3
-O programa exibe "diferentes" porque a comparação s == t está comparando os endereços de memória dos dois arrays e não seus conteúdos. Para comparar o conteúdo de duas strings em C, você deve usar a função strcmp().
+
+O programa exibe "diferentes" porque a comparação s == t está 
+comparando os endereços de memória dos dois arrays e não seus 
+conteúdos. Para comparar o conteúdo de duas strings em C, você 
+deve usar a função strcmp().
+
+------------------------------------------------------------------
 
 1.4
-O programa primeiro imprime "um" e depois "dois". A operação x = y; copia o conteúdo de y para x, substituindo assim o valor original de x por "dois".
+
+O programa primeiro imprime "um" e depois "dois". A operação x = y; 
+copia o conteúdo de y para x, substituindo assim o valor original 
+de x por "dois".
+
+------------------------------------------------------------------
 
 1.5
-O programa troca os valores de a e b sem usar uma variável temporária. Isso é feito usando aritmética de ponteiros. No final, o programa imprimirá "a=5 b=3".
+
+O programa troca os valores de a e b sem usar uma variável 
+temporária. Isso é feito usando aritmética de ponteiros. No 
+final, o programa imprimirá "a=5 b=3".
+
+------------------------------------------------------------------
 
 1.6
+
 (a) Alocação de memória dinâmica sequencial.
 
 (b) Alocação de memória estática encadeada.
 
 (c) Alocação de memória dinâmica encadeada.
 
-Se precisar de mais alguma explicação ou tiver mais dúvidas, fique à vontade para perguntar!
+------------------------------------------------------------------
 */
