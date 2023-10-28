@@ -1,8 +1,10 @@
 /*
 
+------------------------------------------------------------------
+
 1.1 Analise a estrutura de dados esquematizada a seguir:
 
-    A   ------->   B   ------->   C   ------->   D   ------->   E   ------->   F  
+   A  ----->  B  ----->  C  ----->  D  ----->  E  ----->  F  
 
 Explique por que essa estrutura: 
 
@@ -10,14 +12,20 @@ Explique por que essa estrutura:
 (b) Não é uma lista. 
 (c)	Não é uma árvore.
 
-1.2	Indique a estrutura de dados mais adequada para ser usada num programa que precisa representar:
+------------------------------------------------------------------
+
+1.2	Indique a estrutura de dados mais adequada para ser usada num 
+programa que precisa representar:
 
 (a) Estradasentrecidadesdeummapa. 
 (b) A estrutura organizacional de uma empresa. 
 (c)	A fila de impressão em um sistema operacional. 
 (d) A estrutura de diretórios em um sistema operacional.
 
-1.3	Ao ser executado, o programa a seguir exibe a palavra diferentes. Explique por que isso acontece.
+------------------------------------------------------------------
+
+1.3	Ao ser executado, o programa a seguir exibe a palavra 
+diferentes. Explique por que isso acontece.
 
 #include <stdio.h>
 
@@ -32,6 +40,8 @@ int main (void) {
 
     return 0;
 }
+
+------------------------------------------------------------------
 
 1.4	Explique o que acontece quando o programa a seguir é executado. 
 
@@ -55,6 +65,8 @@ int main(void) {
     return 0;
 }
 
+------------------------------------------------------------------
+
 1.5	Explique o que acontece quando o programa a seguir é executado. 
 
 #inclue <stdio.h>
@@ -76,8 +88,14 @@ int main(void) {
     return 0;
 }
 
-1.6 Indique a forma de alocação de memória (estática sequencial, estática encadeada, dinâmica sequencial ou dinâmica encadeada) 
-usada para armazenar os itens 1, 2, 3 e 4, em cada um dos programas a seguir. 
+------------------------------------------------------------------
+
+1.6 Indique a forma de alocação de memória (estática sequencial, 
+estática encadeada, dinâmica sequencial ou dinâmica encadeada) 
+usada para armazenar os itens 1, 2, 3 e 4, em cada um dos 
+programas a seguir. 
+
+------------------------------------------------------------------
 
 (a) 
 
@@ -99,6 +117,9 @@ int main(void) {
 
     return 0;
 }
+
+------------------------------------------------------------------
+
 (b) 
 
 #include <stdio.h>
@@ -120,6 +141,8 @@ int main(void) {
 
     return 0;
 }
+
+------------------------------------------------------------------
 
 (c) 
 
@@ -152,6 +175,8 @@ int main(void) {
 
     return 0;
 }
+
+------------------------------------------------------------------
 
 */
 
@@ -190,20 +215,3 @@ O programa troca os valores de a e b sem usar uma variável temporária. Isso é
 
 Se precisar de mais alguma explicação ou tiver mais dúvidas, fique à vontade para perguntar!
 */
-
-#include <iostream>
-
-int main(void) {
-
-    int N, R, Topo = 0;
-    int Pilha[20];
-    
-    printf("Entre com um numero inteiro: ");
-    scanf("%d",&N);
-
-    while(N > 0) {
-        R = N % 2
-    }
-
-    return 0;
-}
