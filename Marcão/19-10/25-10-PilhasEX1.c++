@@ -4,6 +4,7 @@ typedef char Elem;  // Define o tipo de dado 'Elem' como um caractere
 
 
 // ------------------------ Definição da estrutura da pilha ------------------------ 
+
 typedef struct pilha {
   int MAX;     // Capacidade máxima da pilha
   int topo;    // Índice que aponta para o topo da pilha
