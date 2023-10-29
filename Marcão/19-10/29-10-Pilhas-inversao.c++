@@ -74,31 +74,27 @@ void destroip(Pilha &P) {
     P = nullptr;       // Atribui nullptr ao ponteiro da pilha para evitar o acesso após a destruição
 }
 
+// ----------------------- Função principal inversao de cadeia --------------------- 
 
-// ---------------------------- Função principal ---------------------------- 
+int main(void) { 
 
+    char c[81]; 
+    Pilha P = pilha(81); 
 
-int main(void) {
-    int n;
-    Pilha P = criapilha(32);   // Cria uma pilha com capacidade para 32 elementos
+    printf("Cadeia? "); 
+    gets(c); 
 
-    printf("Decimal? ");       // Escreve na Tela pedindo o número em decimal
-    scanf("%d",&n);            // Pega o número que será usado no código
-
-    do
-    {
-        push(P, n % 2);
-        n /= 2;
-    } while (n != 0);
-
-    printf("Binario: ");    
-
-    while (!vaziap(P))
-    {
-        printf("%d", pop(P));
+    for(int i=0; c[i]; i++) {
+        push(c[i],P); 
     }
 
-    destroip(P);
+    printf("Inverso: "); 
+
+    while( !vaziap(P) ) {
+        printf("%c", pop(P)); 
+    }
+    destroip(&P);
 
     return 0;
 }
+
