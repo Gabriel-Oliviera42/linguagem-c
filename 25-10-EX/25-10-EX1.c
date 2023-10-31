@@ -46,6 +46,22 @@ struct Reservas {        //|Reservas| Espaço |
                          //+--------+--------+ 
 
 
+// ------------------ Função para limpar o buffer do teclado ----------------------
+
+void limparBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
+// ------------ Função para ler uma string com limite máximo de caracteres -----------
+
+void lerString(char *str, int tamanho) {
+    fgets(str, tamanho, stdin);
+    // Remove o caractere de nova linha do final da string, se estiver presente
+    str[strcspn(str, "\n")] = 0;
+}
+
+
 int main() {
     struct Reservas reserva[60];
     int avi[4] = {0, 0, 0, 0};
@@ -77,18 +93,27 @@ int main() {
         printf("----------------------------------------------------------------\n");
 
         switch (op) {
+
+            // --------- caso 1 - Cadastrar o número dos aviões -----------
+
             case 1:
                 for (i = 0; i < 4; i++) {
                     printf("Digite o %d* Aviao: ", i + 1);
                     scanf("%d", &avi[i]);
                 }
                 break;
+
+            // --------- caso 2 - lugares disponiveis em cada avião -----------
+        
             case 2:
                 for (i = 0; i < 4; i++) {
                     printf("Digite o número de lugares disponíveis no %d* aviao: ", i + 1);
                     scanf("%d", &lug[i]);
                 }
                 break;
+
+            // ----------------- caso 3 - Reservar passagem -------------------
+
             case 3:
                 printf("Digite o numero do aviao no qual deseja efetuar a reserva: ");
                 scanf("%d", &numero);
@@ -118,6 +143,9 @@ int main() {
                     }
                 }
                 break;
+
+            // ----------------- caso 4 - Consultar por avião -------------------
+
             case 4:
                 printf("Digite o numero do aviao para consultar as reservas: ");
                 scanf("%d", &numero);
@@ -147,6 +175,7 @@ int main() {
                 }
                 break;
             case 6:
+                printf("Encerrando o programa...\n");
                 printf("Encerrando o programa.\n");
                 break;
             default:
