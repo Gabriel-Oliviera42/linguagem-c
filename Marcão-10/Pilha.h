@@ -29,6 +29,17 @@ void push(Pilha P, Elem x) {
     }
 }
 
+// ---------------- Função para adicionar um elemento 'x' à pilha 'P' ----------- 
+
+void push_maior(Pilha P, Elem x) {
+    if (P->topo < P->MAX) {     // Verifica se a pilha não está cheia
+        if (P->topo == 0 || x > P -> item[P -> topo - 1]) {
+            P -> item [P -> topo] = x;
+            P -> topo++;
+        }
+    }
+}
+
 // ----------- Função para remover e retornar o elemento no topo da pilha 'P' ----------- 
 
 Elem pop(Pilha P) {
