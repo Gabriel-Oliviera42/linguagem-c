@@ -13,8 +13,8 @@ int main() {             // Função principal do programa.
         printf("Digite um nome: ");
         gets(nome);
 
-        while (strcmp(nome,"fim") != 0) { // Enquanto o caractere digitado não for 'f':
-            fputc(nome, p); // Escreve o caractere no arquivo.
+        while (strcmp(nome,"fim") != 0) { // Enquanto o caractere digitado não for 'fim':
+            fprintf(p, "%s\n", nome); 
             fputc('\n', p);
 
             if (ferror(p)) // Verifica se ocorreu algum erro durante a gravação no arquivo.
