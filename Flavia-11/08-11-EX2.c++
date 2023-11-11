@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string.h>
 
-int main() {             // Função principal do programa.
+int main(void) {             // Função principal do programa.
     FILE *p;             // Declara um ponteiro para um arquivo.
     char nome[30];       // Declara uma variável do tipo caractere.
 
