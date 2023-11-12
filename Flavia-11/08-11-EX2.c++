@@ -7,7 +7,7 @@ int main(void) {             // Função principal do programa.
 
     p = fopen("C:\\lin_c\\caract.txt", "a"); // Abre o arquivo em modo de adição.
 
-    if (p == NULL) // Verifica se houve erro na abertura do arquivo.
+    if (p == NULL) // Verifica se houve erro na abertura do arquivo.    
         printf("\nErro na abertura"); // Imprime uma mensagem de erro caso não seja possível abrir o arquivo.
     else { // Caso contrário, se o arquivo foi aberto com sucesso:
         printf("Digite um nome: ");
