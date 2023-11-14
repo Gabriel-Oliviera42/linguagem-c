@@ -79,8 +79,12 @@ Elem topo(Pilha P) {
 
 // ------------------------- Função para destruir a pilha 'P' -------------------------
 
+/* só funciona no replit
+
 void destroip(Pilha &P) {
     delete[] P->item;  // Libera a memória alocada para o array de elementos da pilha
     delete P;          // Libera a memória alocada para a estrutura da pilha
     P = nullptr;       // Atribui nullptr ao ponteiro da pilha para evitar o acesso após a destruição
 }
+
+*/
