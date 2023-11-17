@@ -7,7 +7,7 @@ int main() {
     if (arquivo == NULL) {
         printf("Erro na abertura do arquivo.\n");
     } else {
-        for (int i = 0; i <= 10; ++i) {
+        for (int i = 0; i <= 10; i++) {
             fprintf(arquivo, "%d\n", i);
         }
     }
