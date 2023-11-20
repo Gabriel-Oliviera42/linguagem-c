@@ -79,13 +79,12 @@ int main() {
     return 0;
 }
 
-
 Como implementaria as regras que restringem a movimentação de cartas?
 
 Qual seria a melhor estratégia para representar, armazenar e manipular as
 informações referentes a essas pilhas de cartas, dentro de seu programa?
 
-apenas colocaria para melhorar a visão do usuario
-
+apenas colocaria para melhorar a visão do usuario já que a lógica 
+já está feita 
 
 */
