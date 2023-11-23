@@ -1,125 +1,198 @@
+#include <iostream>
+#include <string.h>
+#include <Windows.h>
+#include <locale>
 
+struct reg
+{
+	char nome[20];
+	char tel[20];
+	char email[20];
+	char status;
+};
 
-int main() {
-    struct Reservas reserva[60];   // Inicializa a estrutura para armazenar até 60 reservas
-    int avi[4] = {0, 0, 0, 0};     // Inicializa um vetor para armazenar os números dos aviões
-    int lug[4] = {0, 0, 0, 0};     // Inicializa um vetor para armazenar os lugares disponíveis em cada avião
-    int i;                         // Variável de iteração
-    int op;                        // Variável para armazenar a opção do menu selecionada
-    int pos_livre = 0;             // Contador para rastrear as posições livres no vetor de reservas
-    int achou;                     // Variável para verificar se um avião específico foi encontrado
-    int numero;                    // Variável para armazenar o número do avião
-    int posi;                      // Variável para armazenar a posição do avião no vetor
-    char nome[30];                 // Variável para armazenar o nome do passageiro
- 
-    for (i = 0; i < 60; i++) {     // Inicializa as estruturas de dados com valores iniciais
-        reserva[i].num_avi = 0;          // Inicializa os números dos aviões como 0
-        strcpy(reserva[i].nome, "");     // Inicializa os nomes dos passageiros como strings vazias
-    }
+int tamanho(FILE *);
+void cadastrar(FILE *);
+void consultar(FILE *);
+void geraarqtxt(FILE *);
+void excluir(FILE *);
 
-    do {
-        printf("----------------------------------------------------------------\n");
-        printf("Menu de Opcoes\n"); 
-        printf("1 - Cadastrar o numero dos avioes.\n");                            
-        printf("2 - Cadastrar o numero de lugares disponiveis em cada aviao\n");   
-        printf("3 - Reservar passagem.\n");                                        
-        printf("4 - Consultar por aviao.\n");
-        printf("5 - Consultar por passageiro.\n");
-        printf("6 - Finalizar.\n");
-        printf("Digite sua opcao: ");
-        scanf("%d", &op);
-        printf("----------------------------------------------------------------\n");
+int main()
+{
+	int op;
+	FILE *arq;
 
-        switch (op) {
+	if ((arq = fopen("dados1.dat", "rb+")) == NULL)
+	{
+		if ((arq = fopen("dados1.dat", "wb+")) == NULL)
+		{
+			printf("Falha ao abrir o arquivo!\n");
+			system("pause");
+		}
+	}
 
-            // --------- caso 1 - Cadastrar o número dos aviões -----------
+	//existentes no arquivo agenda1.dat
+	do
+	{
+		system("CLS");
+		printf("\n======= AGENDA ======= \n");
+		printf("1.Cadastrar\n");
+		printf("2.Consultar por codigo\n");
+		printf("3.Gerar arquivo\n");
+		printf("4.Excluir registro\n");
+		printf("5.Sair\n");
+		printf("===========Contatos:%d=\n", tamanho(arq));
+		printf("Opcao:");
+		scanf("%d", &op);
+		switch (op)
+		{
+		case 1://cadastrar novo contato
+			cadastrar(arq);
+			break;
+		case 2://consultar por código
+			consultar(arq);
+			break;
+		case 3://	case 3:consultanome(arq);
+		     geraarqtxt(arq);
+			//gerar arquivo texto com todos os contatos 
+			//ordenados 22alfabeticamente
+			break;
+		case 4: //exclui um registro do arq
+			excluir(arq); 
+			break;
 
-            case 1:
-                for (i = 0; i < 4; i++) {
-                    printf("Digite o %d* Aviao: ", i + 1);
-                    scanf("%d", &avi[i]);  // Armazena os números dos aviões
-                }
-                break;
+		case 5: fclose(arq);
+		}
+	} while (op != 5);
+}
 
-            // --------- caso 2 - lugares disponiveis em cada avião -----------
-        
-            case 2:
-                for (i = 0; i < 4; i++) {
-                    printf("Digite o número de lugares disponíveis no %d* aviao: ", i + 1);
-                    scanf("%d", &lug[i]);  // Armazena os lugares disponíveis em cada avião
-                }
-                break;
+void cadastrar(FILE *arq)
+{
+	reg contato;
+	char confirma;
+	contato.status = ' ';
+	fflush(stdin);
 
-            // ----------------- caso 3 - Reservar passagem -------------------
+	printf("Cadastrando novo registro:\n");
+	printf("\nNumero do registro:%d\n", tamanho(arq) + 1);
+	printf("Nome..........:");
+	//getchar();
+	gets(contato.nome);
+	printf("Telefone......:");
+	gets(contato.tel);
+	printf("e-mail........:");
+	gets(contato.email);
+	printf("\nConfirma <s/n>:");
+	fflush(stdin);
+	scanf("%c", &confirma);
 
-            case 3:
-                printf("Digite o numero do aviao no qual deseja efetuar a reserva: ");
-                scanf("%d", &numero);   // Lê o número do avião fornecido pelo usuário
-                if (pos_livre >= 60) {  // Mensagem se o número máximo de reservas for atingido
-                    printf("Reservas em todos os avioes esgotadas\n");
-                } else {
-                    achou = 0;
-                    for (i = 0; i < 4; i++) {
-                        if (avi[i] == numero) {  // Verifica se o avião existe
-                            achou = 1;
-                            posi = i;            // Armazena a posição do avião no vetor
-                            break;               // Para de fazer o for se achar 
-                        }
-                    }
-                    if (achou == 0) {  // Mensagem se o avião não for encontrado
-                        printf("Este aviao nao existe\n");
-                    } else if (lug[posi] == 0) {  // Mensagem se o avião estiver lotado
-                        printf("Aviao lotado\n");
-                    } else {
-                        printf("Digite o nome do passageiro: ");
-                        scanf("%s", nome); // Lê o nome do passageiro
-                        reserva[pos_livre].num_avi = numero;  // Armazena o número do avião na reserva
-                        strcpy(reserva[pos_livre].nome, nome);  // Armazena o nome do passageiro na reserva
-                        printf("Reserva efetuada com sucesso\n");  // Confirmação da reserva bem-sucedida
-                        pos_livre++; // Incrementa a posição livre no vetor de reservas
-                        lug[posi]--; // Decrementa os lugares disponíveis no avião
-                    }
-                }
-                break;
+	if (toupper(confirma) == 'S')
+	{
+		printf("\ngravando...\n\n");
+		fseek(arq, 0, SEEK_END);
+		fwrite(&contato, sizeof(reg), 1, arq);
 
-            // ----------------- caso 4 - Consultar por avião -------------------
+	}
+	system("pause");
+}
 
-            case 4:
-                printf("Digite o numero do aviao para consultar as reservas: ");
-                scanf("%d", &numero);  // Lê o número do avião fornecido pelo usuário
-                achou = 0;
-                for (i = 0; i < pos_livre; i++) {
-                    if (reserva[i].num_avi == numero) {
-                        printf("%s\n", reserva[i].nome);  // Imprime o nome do passageiro para reservas no avião fornecido
-                        achou = 1;
-                    }
-                }
-                if (achou == 0) {
-                    printf("Nenhuma reserva esta cadastrada para este aviao\n");  // Mensagem se não houver reservas para o avião
-                }
-                break;
-            case 5:
-                printf("Digite o nome do passageiro para consultar as reservas: ");
-                scanf("%s", nome);  // Lê o nome do passageiro fornecido pelo usuário
-                achou = 0;
-                for (i = 0; i < pos_livre; i++) {
-                    if (strcmp(reserva[i].nome, nome) == 0) {
-                        printf("%d\n", reserva[i].num_avi);  // Imprime o número do avião para reservas no nome do passageiro fornecido
-                        achou = 1;
-                    }
-                }
-                if (achou == 0) {
-                    printf("Nenhuma reserva esta cadastrada para este nome\n");  // Mensagem se não houver reservas para o passageiro
-                }
-                break;
-            case 6:
-                printf("Encerrando o programa...\n");  // Mensagem de encerramento do programa
-                printf("Obrigado por usar\n");
-                break;
-            default:
-                break;
-        }
-    } while (op != 6);  // Repete o loop até que o usuário selecione a opção 6 (Finalizar)
+void consultar(FILE *arq)
+{
+	reg contato;
+	int nr;
+	printf("\nConsulta pelo codigo\n");
+	printf("\nInforme o Codigo...:");
+	scanf("%d", &nr);
+	if ((nr <= tamanho(arq)) && (nr>0))
+	{
+		fseek(arq, (nr - 1) * sizeof(reg), SEEK_SET);
+		fread(&contato, sizeof(reg), 1, arq);
+		if (contato.status == ' ')
+		{
+			printf("\nNome......:%s", contato.nome);
+			printf("\nTelefone..:%s", contato.tel);
+			printf("\ne-mail....:%s\n\n", contato.email);
+		}
 
-    return 0;
+		else
+			printf("\nRegistro excluido! \n");
+
+	}
+	else
+	{
+		printf("\nNumero de registro invalido!\n");
+	}
+	system("pause");
+}
+
+void geraarqtxt(FILE *arq)
+{
+	char nomearq[20];
+	printf("Nome do arquivo texto:");
+	scanf("%s", nomearq);
+	strcat(nomearq, ".txt");
+	FILE *arqtxt = fopen(nomearq, "w");
+	if (!arqtxt)
+	{
+		printf("Nao foi possivel criar esse arquivo!\n");
+		system("pause");
+		//return;
+	}
+	fprintf(arqtxt, "Nome                Telefone    E-mail                   Status\n");
+	fprintf(arqtxt, "================================================================\n");
+	int nr;
+	reg contato;
+	for (nr = 0; nr<tamanho(arq); nr++)
+	{
+		fseek(arq, nr * sizeof(reg), SEEK_SET);
+		fread(&contato, sizeof(reg), 1, arq);
+		fprintf(arqtxt, "%-20s%-12s%-25s- %c\n", contato.nome, contato.tel, contato.email, contato.status);
+	}
+	fprintf(arqtxt, "================================================================\n");
+	fclose(arqtxt);
+}
+
+void excluir(FILE *arq)
+{
+	reg contato;
+	char confirma;
+	int nr;
+
+	printf("\nInforme o codigo do registro para excluir\n");
+	scanf("%d", &nr);
+	if ((nr <= tamanho(arq)) && (nr>0))
+	{
+		fseek(arq, (nr - 1) * sizeof(reg), SEEK_SET);
+		fread(&contato, sizeof(reg), 1, arq);
+		if (contato.status == ' ')
+		{
+			printf("\nNome......:%s", contato.nome);
+			printf("\nTelefone..:%s", contato.tel);
+			printf("\ne-mail....:%s\n", contato.email);
+			printf("\nConfirma a exclusao: <s/n>\n");
+			getchar();
+			scanf("%c", &confirma);
+
+			if (toupper(confirma) == 'S')
+			{
+				printf("\nexcluindo...\n\n");
+				fseek(arq, (nr - 1) * sizeof(reg), SEEK_SET);
+				contato.status = '*';
+				fwrite(&contato, sizeof(reg), 1, arq);
+			}
+		}
+	else
+		printf("Registro inexistente! \n");
+	}
+	else
+	{
+		printf("\nNumero de registro invalido!\n");
+	}
+	system("pause");
+}
+
+int tamanho(FILE *arq)
+{
+	fseek(arq, 0, SEEK_END);
+	return ftell(arq) / sizeof(reg);
 }
