@@ -2,7 +2,7 @@
 
 int main() {
 
-    FILE *arquivo = fopen("C:\\lin_c\\resultado.txt", "w");
+    FILE *arquivo = fopen("C:\\lin_c\\resultado.txt", "a");
 
     if (arquivo == NULL) {
         printf("Erro na abertura do arquivo.\n");
