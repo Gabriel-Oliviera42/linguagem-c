@@ -22,3 +22,58 @@ a média das notas fique em 8.67.
 - Apresente, novamente, a lista com as novas notas e a média recalculada.
     
 */
+
+#include <cstdio>
+
+int main() {
+
+    double notas[3] = {7.50, 8.30, 10.00};
+
+    // ----- Calcular a média das notas -----
+    double media = 0.0;
+    for (int i = 0; i < 3; ++i) {
+        media += notas[i];
+    }
+    media /= 3;
+
+    // ----- Apresentar a média inicial ----- 
+    printf("Notas iniciais: ");
+    for (int i = 0; i < 3; ++i) {
+        printf("%.2f ", notas[i]);
+    }
+    printf("\nMedia inicial: %.2f\n", media);
+
+    // Pedir ao usuário o índice da nota a ser substituída
+    int indiceSubstituir; // variavel do lugar que vai ser substituido
+    printf("Digite o indice (0, 1 ou 2) da nota que deseja substituir: ");
+    scanf("%d", &indiceSubstituir);
+
+    // Verificar se o índice é válido
+    if (indiceSubstituir >= 0 && indiceSubstituir < 3) {
+        // Pedir ao usuário a nova nota
+        double novaNota;
+        printf("Digite a nova nota: ");
+        scanf("%lf", &novaNota);
+
+        // Substituir a nota no índice especificado
+        notas[indiceSubstituir] = novaNota;
+
+        // Recalcular a média após a alteração
+        media = 0.0;
+        for (int i = 0; i < 3; ++i) {
+            media += notas[i];
+        }
+        media /= 3;
+
+        // Apresentar o array e a média após a alteração
+        printf("\nNotas alteradas: ");
+        for (int i = 0; i < 3; ++i) {
+            printf("%.2f ", notas[i]);
+        }
+        printf("\nMedia recalculada: %.2f\n", media);
+    } else {
+        printf("Indice invalido. Programa encerrado.\n");
+    }
+
+    return 0;
+}
