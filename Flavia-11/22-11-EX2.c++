@@ -17,13 +17,22 @@ void cadastrar(FILE *arq) {
     while (getchar() != '\n'); // Loop para consumir caracteres até encontrar uma nova linha (limpar o buffer)
 
     printf("Nome..........:");
-    fgets(contato.nome, sizeof(contato.nome), stdin);  // Lê o nome
+    fgets(contato.nome, sizeof(contato.nome), stdin);  // Lê o nome do contato
+
+    // Remover o caractere de nova linha se estiver presente no final da string
+    contato.nome[strcspn(contato.nome, "\n")] = '\0';
 
     printf("Telefone......:");
-    fgets(contato.tel, sizeof(contato.tel), stdin);   // Lê o telefone 
+    fgets(contato.tel, sizeof(contato.tel), stdin);   // Lê o telefone do contato
+
+    // Remover o caractere de nova linha se estiver presente no final da string
+    contato.tel[strcspn(contato.tel, "\n")] = '\0';
 
     printf("E-mail........:");
-    fgets(contato.email, sizeof(contato.email), stdin);  // Lê o e-mail 
+    fgets(contato.email, sizeof(contato.email), stdin);  // Lê o e-mail do contato
+
+    // Remover o caractere de nova linha se estiver presente no final da string
+    contato.email[strcspn(contato.email, "\n")] = '\0';
 
     printf("\nConfirma <s/n>: ");
     scanf(" %c", &confirma);  // Lê a confirmação do usuário (o espaço antes de %c consome espaços em branco)
