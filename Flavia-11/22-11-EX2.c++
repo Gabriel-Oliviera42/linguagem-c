@@ -2,98 +2,48 @@
 #include <string.h>
 #include <Windows.h>
 #include <locale>
+#include "arquivo.h"
 
-struct reg
-{
-	char nome[20];
-	char tel[20];
-	char email[20];
-	char status;
-};
+void cadastrar(FILE *arq) {
+    reg contato;   // Estrutura para armazenar informações do contato
+    char confirma;  // Variável para armazenar a confirmação do usuário
 
-int tamanho(FILE *);
-void cadastrar(FILE *);
-void consultar(FILE *);
-void geraarqtxt(FILE *);
-void excluir(FILE *);
+    contato.status = ' ';  // Inicializa o status do contato como espaço em branco
 
-int main()
-{
-	int op;
-	FILE *arq;
+    printf("Cadastrando novo registro:\n");
+    printf("\nNumero do registro: %d\n", tamanho(arq) + 1);
 
-	if ((arq = fopen("dados1.dat", "rb+")) == NULL)
-	{
-		if ((arq = fopen("dados1.dat", "wb+")) == NULL)
-		{
-			printf("Falha ao abrir o arquivo!\n");
-			system("pause");
-		}
-	}
+    // Limpar o buffer de entrada antes de ler a string
+    while (getchar() != '\n'); // Loop para consumir caracteres até encontrar uma nova linha (limpar o buffer)
 
-	//existentes no arquivo agenda1.dat
-	do
-	{
-		system("CLS");
-		printf("\n======= AGENDA ======= \n");
-		printf("1.Cadastrar\n");
-		printf("2.Consultar por codigo\n");
-		printf("3.Gerar arquivo\n");
-		printf("4.Excluir registro\n");
-		printf("5.Sair\n");
-		printf("===========Contatos:%d=\n", tamanho(arq));
-		printf("Opcao:");
-		scanf("%d", &op);
-		switch (op)
-		{
-		case 1://cadastrar novo contato
-			cadastrar(arq);
-			break;
-		case 2://consultar por código
-			consultar(arq);
-			break;
-		case 3://	case 3:consultanome(arq);
-		     geraarqtxt(arq);
-			//gerar arquivo texto com todos os contatos 
-			//ordenados 22alfabeticamente
-			break;
-		case 4: //exclui um registro do arq
-			excluir(arq); 
-			break;
+    printf("Nome..........:");
+    fgets(contato.nome, sizeof(contato.nome), stdin);  // Lê o nome do contato
 
-		case 5: fclose(arq);
-		}
-	} while (op != 5);
-}
+    // Remover o caractere de nova linha se estiver presente no final da string
+    contato.nome[strcspn(contato.nome, "\n")] = '\0';
 
-void cadastrar(FILE *arq)
-{
-	reg contato;
-	char confirma;
-	contato.status = ' ';
-	fflush(stdin);
+    printf("Telefone......:");
+    fgets(contato.tel, sizeof(contato.tel), stdin);   // Lê o telefone do contato
 
-	printf("Cadastrando novo registro:\n");
-	printf("\nNumero do registro:%d\n", tamanho(arq) + 1);
-	printf("Nome..........:");
-	//getchar();
-	gets(contato.nome);
-	printf("Telefone......:");
-	gets(contato.tel);
-	printf("e-mail........:");
-	gets(contato.email);
-	printf("\nConfirma <s/n>:");
-	fflush(stdin);
-	scanf("%c", &confirma);
+    // Remover o caractere de nova linha se estiver presente no final da string
+    contato.tel[strcspn(contato.tel, "\n")] = '\0';
 
-	if (toupper(confirma) == 'S')
-	{
-		printf("\ngravando...\n\n");
-		fseek(arq, 0, SEEK_END);
-		fwrite(&contato, sizeof(reg), 1, arq);
+    printf("E-mail........:");
+    fgets(contato.email, sizeof(contato.email), stdin);  // Lê o e-mail do contato
 
-	}
-	system("pause");
+    // Remover o caractere de nova linha se estiver presente no final da string
+    contato.email[strcspn(contato.email, "\n")] = '\0';
+
+    printf("\nConfirma <s/n>: ");
+    scanf(" %c", &confirma);  // Lê a confirmação do usuário (o espaço antes de %c consome espaços em branco)
+
+    if (toupper(confirma) == 'S') {
+        printf("\nGravando...\n\n");
+        fseek(arq, 0, SEEK_END);
+        fwrite(&contato, sizeof(reg), 1, arq);  // Grava o contato no final do arquivo
+    }
+
+    getchar();  // Aguarda a entrada do usuário antes de continuar
 }
 
 void consultar(FILE *arq)
@@ -191,8 +141,54 @@ void excluir(FILE *arq)
 	system("pause");
 }
 
-int tamanho(FILE *arq)
-{
-	fseek(arq, 0, SEEK_END);
-	return ftell(arq) / sizeof(reg);
+int main(void) {
+    int op;
+    FILE *arq;
+
+    // Tenta abrir o arquivo "dados1.dat" em modo leitura e gravação (rb+).
+    if ((arq = fopen("C:\\lin_c\\dados.txt", "rb+")) == NULL) {
+        // Se a abertura falhar, tenta criar o arquivo em modo leitura e gravação (wb+).
+        if ((arq = fopen("C:\\lin_c\\dados.txt", "wb+")) == NULL) {
+            printf("Falha ao abrir/criar o arquivo!\n");
+            return 1; // Encerra o programa com código de erro.
+        }
+    }
+
+    do {
+        system("CLS"); // Limpa a tela do console (pode não funcionar em todos os sistemas).
+        printf("\n======= AGENDA ======= \n");
+        printf("1. Cadastrar\n");
+        printf("2. Consultar por codigo\n");
+        printf("3. Gerar arquivo\n");
+        printf("4. Excluir registro\n");
+        printf("5. Sair\n");
+        printf("=========== Contatos:%d=\n", tamanho(arq));
+        printf("Opcao:");
+        scanf("%d", &op);
+
+        switch (op) {
+            case 1:
+                cadastrar(arq);
+                break;
+            case 2:
+                consultar(arq);
+                break;
+            case 3:
+                geraarqtxt(arq);
+                break;
+            case 4:
+                excluir(arq);
+                break;
+            case 5:
+                fclose(arq); // Fecha o arquivo.
+                break;
+            default:
+                printf("Opção inválida. Tente novamente.\n");
+        }
+
+        getchar(); // Aguarda a entrada do usuário antes de limpar a tela.
+
+    } while (op != 5);
+
+    return 0; // Programa encerrado com sucesso.
 }
