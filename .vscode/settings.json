@@ -21,7 +21,8 @@
         "ostream": "cpp",
         "streambuf": "cpp",
         "type_traits": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "teste-001.C": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

@@ -3,23 +3,23 @@
 
 typedef struct no {
     int valor;
-    struct no * proximo;
+    struct no *proximo;
 } No;
 
 void inserir_no_inicio(No **lista, int num) {
-    No *novo = new No;
+    No *novo = malloc(sizeof(No));
 
     if(novo) {
         novo -> valor = num;
         novo -> proximo = *lista;
         *lista = novo;
     } else {
-        printf("Erro ao alocar memoria")
+        printf("Erro ao alocar memoria");
     }
 }
 
 void inserir_no_fim(No **lista, int num) {
-    No *aux, *novo = new No;
+    No *aux, *novo = malloc(sizeof(No));
 
     if(novo) {
         novo -> valor = num;
@@ -31,18 +31,18 @@ void inserir_no_fim(No **lista, int num) {
         } else {
             aux = *lista;
             while (aux -> proximo) {
-                aux = aux -> proximo
+                aux = aux -> proximo;
             }
             aux -> proximo = novo;
             
         }
     } else {
-        printf("Erro ao alocar memoria")
+        printf("Erro ao alocar memoria");
     }
 }
 
 void inserir_no_meio(No **lista, int num, int ant) {
-    No *novo = new No;
+    No *aux, *novo = malloc(sizeof(No));
 
     if(novo) {
         // é o primeiro?
@@ -55,8 +55,18 @@ void inserir_no_meio(No **lista, int num, int ant) {
                 aux = aux -> proximo;
             }
             novo -> proximo = aux -> proximo;
+            aux -> proximo = novo;
         }
     } else {
-        printf("Erro ao alocar memoria")
+        printf("Erro ao alocar memoria");
     }
+}
+
+void imprimir(No *no) {
+    printf("\n\tLista: ");
+    while (no) {
+        printf("%d ", no -> valor);
+        no = no -> proximo;
+    }
+    printf("\n\n");
 }
