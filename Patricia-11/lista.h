@@ -6,6 +6,8 @@ typedef struct no {
     struct no *proximo;
 } No;
 
+//lista simplesmente encadeada
+
 void inserir_no_inicio(No **lista, int num) {
     No *novo = malloc(sizeof(No));
 
@@ -45,6 +47,7 @@ void inserir_no_meio(No **lista, int num, int ant) {
     No *aux, *novo = malloc(sizeof(No));
 
     if(novo) {
+        novo -> valor = num;
         // é o primeiro?
         if (*lista == NULL) {
             novo -> proximo = NULL;
