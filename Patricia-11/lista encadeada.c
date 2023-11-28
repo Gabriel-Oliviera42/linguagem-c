@@ -4,8 +4,8 @@
 
 int main(void) {
 
-    int op, valor, anterior;
-    No *lista = NULL;
+    int     op, valor, anterior;
+    No *remover, *lista = NULL;
 
     do {
         printf("\n\t0 - Sair\n\t1 - InserirI\n\t2 - InserirF\n\t3 - InserirM\n\t4 - Imprimir\n");

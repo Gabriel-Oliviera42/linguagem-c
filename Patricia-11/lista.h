@@ -65,6 +65,28 @@ void inserir_no_meio(No **lista, int num, int ant) {
     }
 }
 
+No* remover(No **lista, int num) {
+    No *aux, *remover = NULL;
+
+    if(*lista) {
+        if((*lista) -> valor == num) {
+            remover = *lista;
+            *lista = remover -> proximo;
+        } else {
+            aux = *lista;
+            while (aux -> proximo && aux -> proximo -> valor != num) {
+                aux = aux -> proximo;
+            }
+            if (aux -> proximo) {
+                remover = aux -> proximo;
+                aux -> proximo = remover -> proximo;
+            }
+        } 
+    }
+
+    return remover;
+}
+
 void imprimir(No *no) {
     printf("\n\tLista: ");
     while (no) {
