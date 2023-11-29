@@ -23,57 +23,43 @@ a média das notas fique em 8.67.
     
 */
 
-#include <cstdio>
+#include <stdio.h>
+
+// Função para calcular a média de uma lista de notas
+float calcular_media(float notas[], int tamanho) {
+    float soma = 0;
+    for (int i = 0; i < tamanho; i++) {
+        soma += notas[i];
+    }
+    return soma / tamanho;
+}
 
 int main() {
+    // Notas iniciais
+    float notas_aluno[3] = {7.50, 8.30, 10.00};
 
-    double notas[3] = {7.50, 8.30, 10.00};
+    // Calcula a média inicial
+    float media_inicial = calcular_media(notas_aluno, 3);
 
-    // ----- Calcular a média das notas -----
-    double media = 0.0;
-    for (int i = 0; i < 3; ++i) {
-        media += notas[i];
-    }
-    media /= 3;
+    // Apresenta a lista e a média inicial
+    printf("Notas iniciais: %.2f, %.2f, %.2f\n", notas_aluno[0], notas_aluno[1], notas_aluno[2]);
+    printf("Média inicial: %.2f\n", media_inicial);
 
-    // ----- Apresentar a média inicial ----- 
-    printf("Notas iniciais: ");
-    for (int i = 0; i < 3; ++i) {
-        printf("%.2f ", notas[i]);
-    }
-    printf("\nMedia inicial: %.2f\n", media);
+    // Insere a média no final da lista
+    notas_aluno[3] = media_inicial;
 
-    // Pedir ao usuário o índice da nota a ser substituída
-    int indiceSubstituir; // variavel do lugar que vai ser substituido
-    printf("Digite o indice (0, 1 ou 2) da nota que deseja substituir: ");
-    scanf("%d", &indiceSubstituir);
+    // Apresenta a lista com a média inserida
+    printf("\nLista com a média inserida: %.2f, %.2f, %.2f, %.2f\n", notas_aluno[0], notas_aluno[1], notas_aluno[2], notas_aluno[3]);
 
-    // Verificar se o índice é válido
-    if (indiceSubstituir >= 0 && indiceSubstituir < 3) {
-        // Pedir ao usuário a nova nota
-        double novaNota;
-        printf("Digite a nova nota: ");
-        scanf("%lf", &novaNota);
+    // Altera a segunda nota para 8.50
+    notas_aluno[1] = 8.50;
 
-        // Substituir a nota no índice especificado
-        notas[indiceSubstituir] = novaNota;
+    // Recalcula a média
+    float nova_media = calcular_media(notas_aluno, 3);
 
-        // Recalcular a média após a alteração
-        media = 0.0;
-        for (int i = 0; i < 3; ++i) {
-            media += notas[i];
-        }
-        media /= 3;
-
-        // Apresentar o array e a média após a alteração
-        printf("\nNotas alteradas: ");
-        for (int i = 0; i < 3; ++i) {
-            printf("%.2f ", notas[i]);
-        }
-        printf("\nMedia recalculada: %.2f\n", media);
-    } else {
-        printf("Indice invalido. Programa encerrado.\n");
-    }
+    // Apresenta a lista com a nota alterada e a nova média
+    printf("\nLista com a nota alterada: %.2f, %.2f, %.2f, %.2f\n", notas_aluno[0], notas_aluno[1], notas_aluno[2], notas_aluno[3]);
+    printf("Nova média: %.2f\n", nova_media);
 
     return 0;
 }
