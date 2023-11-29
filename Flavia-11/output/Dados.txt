@@ -1,8 +1,4 @@
 Nome                Telefone    E-mail                   Status
 ================================================================
-Gabriel
-            2131321312
- gabriel@gmail.com
-       -  
-Pedro               131231312   pedro@gmail.com          -  
+gabriel             213         gabriel                  -  
 ================================================================
