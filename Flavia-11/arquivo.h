@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string.h>
-#include <Windows.h>
-#include <locale>
+
 							   //+---------+----------+
 struct reg  {                  //| Reservas|  Espaço  |
 	char nome[20];	           //+---------+----------+
@@ -13,203 +12,177 @@ struct reg  {                  //| Reservas|  Espaço  |
 
 // ---- Função para calcular o número de registros no arquivo -----
 
-int tamanho(FILE *arq) {
-	
-    fseek(arq, 0, SEEK_END);  // Move o ponteiro de posição para o final do arquivo
-    int tamanhoEmBytes = ftell(arq);  // Obtém a posição atual do ponteiro (que é o tamanho total do arquivo em bytes)
-    rewind(arq);  // Retorna o ponteiro para o início do arquivo
-
-    // Retorna o número de registros (dividindo o tamanho total pelo tamanho de um registro)
-    return tamanhoEmBytes / sizeof(reg);
+int tamanho(FILE *arq)
+{
+    fseek(arq, 0, SEEK_END);
+    return ftell(arq) / sizeof(reg);
 }
 
 // ------------- Função para cadastrar mais uma pessoa ------------
 
-void cadastrar(FILE *arq) {
-    reg contato;
-    char confirma;
+void cadastrar(FILE *arq)
+{
+    reg contato;  // Declaração de uma variável do tipo 'reg' chamada 'contato'
+    char confirma;  // Declaração de uma variável do tipo char chamada 'confirma'
 
-    contato.status = ' ';
+    contato.status = ' ';  // Inicialização do campo 'status' da estrutura 'contato' com espaço
+    memset(contato.nome, 0, sizeof(contato.nome));  // Inicializa o campo 'nome' com zeros
+    memset(contato.tel, 0, sizeof(contato.tel));  // Inicializa o campo 'tel' com zeros
+    memset(contato.email, 0, sizeof(contato.email));  // Inicializa o campo 'email' com zeros
 
-    fflush(stdin);
+    fflush(stdin);  // Limpa o buffer de entrada
 
+    // Exibe mensagem indicando o início do processo de cadastro
     printf("Cadastrando novo registro:\n");
-    printf("\nNumero do registro:%d\n", tamanho(arq) + 1);
+    // Imprime o número do próximo registro
+    printf("\nNumero do registro: %d\n", tamanho(arq) + 1);
 
-    // Solicitar e armazenar o nome
-    printf("Nome..........:");
-    // Substituí gets por fgets
+    // Lê informações do novo registro
+    printf("Nome..........: ");
     fgets(contato.nome, sizeof(contato.nome), stdin);
+    contato.nome[strcspn(contato.nome, "\n")] = '\0';
 
-    // Solicitar e armazenar o telefone
-    printf("Telefone......:");
+    printf("Telefone......: ");
     fgets(contato.tel, sizeof(contato.tel), stdin);
+    contato.tel[strcspn(contato.tel, "\n")] = '\0';
 
-    // Solicitar e armazenar o e-mail
-    printf("e-mail........:");
+    printf("E-mail........: ");
     fgets(contato.email, sizeof(contato.email), stdin);
+    contato.email[strcspn(contato.email, "\n")] = '\0';
 
-    // Solicitar confirmação do usuário
-    printf("\nConfirma <s/n>:");
+    // Solicita confirmação do usuário
+    printf("\nConfirma <s/n>: ");
     fflush(stdin);
     scanf(" %c", &confirma);
 
-    // Se o usuário confirmar (tecla 'S' ou 's')
-    if (toupper(confirma) == 'S') {
+    // Se o usuário confirmar, grava o registro no arquivo
+    if (toupper(confirma) == 'S')
+    {
         printf("\nGravando...\n\n");
-
-        // Posicionar o ponteiro de arquivo no final e escrever o registro
         fseek(arq, 0, SEEK_END);
         fwrite(&contato, sizeof(reg), 1, arq);
     }
 
-    // Aguardar entrada do usuário antes de continuar
-    printf("Pressione Enter para continuar...");
-    getchar();
+    system("pause");
 }
 
 // ---- Função para consultar um registro no arquivo por código ----
 
-void consultar(FILE *arq) {
+void consultar(FILE *arq)
+{
     reg contato;
     int nr;
 
-    // Solicitar ao usuário o número do registro a ser consultado
-    printf("\nConsulta pelo código\n");
-    printf("\nInforme o Código...:");
+    printf("\nConsulta pelo codigo\n");
+    printf("\nInforme o Codigo...: ");
     scanf("%d", &nr);
 
-    // Verificar se o número do registro é válido
-    if ((nr <= tamanho(arq)) && (nr > 0)) {
-        // Posicionar o ponteiro de arquivo no início do registro desejado
+    // Verifica se o número de registro é válido
+    if ((nr <= tamanho(arq)) && (nr > 0))
+    {
         fseek(arq, (nr - 1) * sizeof(reg), SEEK_SET);
-
-        // Ler o registro do arquivo binário
         fread(&contato, sizeof(reg), 1, arq);
 
-        // Verificar se o registro está ativo (status ' ')
-        if (contato.status == ' ') {
-            // Exibir as informações do registro
-            printf("\nNome......:%s", contato.nome);
-            printf("\nTelefone..:%s", contato.tel);
-            printf("\ne-mail....:%s\n\n", contato.email);
-        } else {
-            // Informar que o registro foi excluído
-            printf("\nRegistro excluído! \n");
+        // Verifica se o registro está ativo
+        if (contato.status == ' ')
+        {
+            printf("\nNome......: %s", contato.nome);
+            printf("\nTelefone..: %s", contato.tel);
+            printf("\nE-mail....: %s\n\n", contato.email);
         }
-    } else {
-        // Informar que o número do registro é inválido
-        printf("\nNúmero de registro inválido!\n");
+        else
+        {
+            printf("\nRegistro excluido! \n");
+        }
+    }
+    else
+    {
+        printf("\nNumero de registro invalido!\n");
     }
 
-    // Pausar a execução do programa antes de continuar
     system("pause");
 }
 
 // ------------- Função para gerar um arquivo de texto ------------
 
-void gerar_arq_txt(FILE *arq) {
-    char nomearq[20];
+void gerararqtxt(FILE *arq)
+{
+    FILE *arqtxt = fopen("C:\\registro\\arquivo.txt", "w");
 
-    // Solicitar o nome do arquivo de texto ao usuário
-    printf("Nome do arquivo texto:");
-    scanf("%s", nomearq);
-
-    // Adicionar a extensão ".txt" ao nome do arquivo
-    strcat(nomearq, ".txt");
-
-    // Tentar abrir o arquivo de texto para escrita
-    FILE *arqtxt = fopen(nomearq, "w");
-    
-    if (!arqtxt) {
-        // Se a abertura falhar, exibir mensagem de erro e pausar
+    if (!arqtxt)
+    {
         printf("Não foi possível criar esse arquivo!\n");
         system("pause");
         return;
     }
 
-    // Escrever cabeçalho no arquivo de texto
+    // Imprime cabeçalho no arquivo de texto
     fprintf(arqtxt, "Nome                Telefone    E-mail                   Status\n");
     fprintf(arqtxt, "================================================================\n");
 
     int nr;
     reg contato;
 
-    // Iterar sobre os registros do arquivo binário
-    for (nr = 0; nr < tamanho(arq); nr++) {
-        // Posicionar o ponteiro de arquivo no início do registro
+    // Loop para percorrer os registros do arquivo original
+    for (nr = 0; nr < tamanho(arq); nr++)
+    {
         fseek(arq, nr * sizeof(reg), SEEK_SET);
-
-        // Ler o registro do arquivo binário
         fread(&contato, sizeof(reg), 1, arq);
 
-        // Escrever os dados no arquivo de texto formatadamente
+        // Imprime os dados no arquivo de texto
         fprintf(arqtxt, "%-20s%-12s%-25s- %c\n", contato.nome, contato.tel, contato.email, contato.status);
     }
 
-    // Escrever linha de separação no arquivo de texto
-    fprintf(arqtxt, "================================================================\n");
-
-    // Fechar o arquivo de texto
     fclose(arqtxt);
 }
 
 // ----------- Função para excluir um registro no arquivo ----------
 
-void excluir(FILE *arq) {
+void excluir(FILE *arq)
+{
     reg contato;
     char confirma;
     int nr;
 
-    // Solicitar ao usuário o número do registro a ser excluído
-    printf("\nInforme o código do registro para excluir\n");
+    // Solicita o código do registro a ser excluído
+    printf("\nInforme o codigo do registro para excluir: ");
     scanf("%d", &nr);
 
-    // Verificar se o número do registro é válido
-    if ((nr <= tamanho(arq)) && (nr > 0)) {
-        // Posicionar o ponteiro de arquivo no início do registro desejado
+    // Verifica se o número de registro é válido
+    if ((nr <= tamanho(arq)) && (nr > 0))
+    {
         fseek(arq, (nr - 1) * sizeof(reg), SEEK_SET);
-
-        // Ler o registro do arquivo binário
         fread(&contato, sizeof(reg), 1, arq);
 
-        // Verificar se o registro está ativo (status ' ')
-        if (contato.status == ' ') {
-            // Exibir as informações do registro
-            printf("\nNome......:%s", contato.nome);
-            printf("\nTelefone..:%s", contato.tel);
-            printf("\ne-mail....:%s\n", contato.email);
-            printf("\nConfirma a exclusão: <s/n>\n");
+        // Verifica se o registro está ativo
+        if (contato.status == ' ')
+        {
+            printf("\nNome......: %s", contato.nome);
+            printf("\nTelefone..: %s", contato.tel);
+            printf("\nE-mail....: %s\n", contato.email);
+            printf("\nConfirma a exclusao: <s/n>\n");
+            fflush(stdin);
+            scanf(" %c", &confirma);
 
-            // Consumir o caractere de nova linha deixado pelo Enter antes da leitura do caractere
-            getchar();
-
-            // Ler a confirmação de exclusão do usuário
-            scanf("%c", &confirma);
-
-            // Se o usuário confirmar (tecla 'S' ou 's'), excluir o registro
-            if (toupper(confirma) == 'S') {
+            // Se o usuário confirmar, exclui o registro
+            if (toupper(confirma) == 'S')
+            {
                 printf("\nExcluindo...\n\n");
-
-                // Posicionar o ponteiro de arquivo no início do registro a ser excluído
                 fseek(arq, (nr - 1) * sizeof(reg), SEEK_SET);
-
-                // Marcar o registro como excluído (status '*')
                 contato.status = '*';
-
-                // Escrever o registro de volta no arquivo, marcando-o como excluído
                 fwrite(&contato, sizeof(reg), 1, arq);
             }
-        } else {
-            // Informar que o registro está inexistente
+        }
+        else
+        {
             printf("Registro inexistente! \n");
         }
-    } else {
-        // Informar que o número do registro é inválido
-        printf("\nNúmero de registro inválido!\n");
+    }
+    else
+    {
+        printf("\nNumero de registro invalido!\n");
     }
 
-    // Pausar a execução do programa antes de continuar
     system("pause");
 }
 
