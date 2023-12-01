@@ -4,9 +4,9 @@
 							   //+---------+----------+
 struct reg  {                  //| Reservas|  Espaço  |
 	char nome[20];	           //+---------+----------+
-	char tel[20];	           //|  status |  1 byte  |
-	char email[20];            //|  email  | 20 bytes |
-	char status;               //|  tel    | 20 bytes |
+	char cor[20];	           //|  status |  1 byte  |
+	char regiao[20];           //|  regiao | 20 bytes |
+	char status;               //|  cor    | 20 bytes |
 };                             //|  nome   | 20 bytes |
 							   //+---------+----------+
 
@@ -27,8 +27,8 @@ void cadastrar(FILE *arq)
 
     contato.status = ' ';  // Inicialização do campo 'status' da estrutura 'contato' com espaço
     memset(contato.nome, 0, sizeof(contato.nome));  // Inicializa o campo 'nome' com zeros
-    memset(contato.tel, 0, sizeof(contato.tel));  // Inicializa o campo 'tel' com zeros
-    memset(contato.email, 0, sizeof(contato.email));  // Inicializa o campo 'email' com zeros
+    memset(contato.cor, 0, sizeof(contato.cor));  // Inicializa o campo 'cor' com zeros
+    memset(contato.regiao, 0, sizeof(contato.regiao));  // Inicializa o campo 'regiao' com zeros
 
     fflush(stdin);  // Limpa o buffer de entrada
 
@@ -42,13 +42,13 @@ void cadastrar(FILE *arq)
     fgets(contato.nome, sizeof(contato.nome), stdin);
     contato.nome[strcspn(contato.nome, "\n")] = '\0';
 
-    printf("Telefone......: ");
-    fgets(contato.tel, sizeof(contato.tel), stdin);
-    contato.tel[strcspn(contato.tel, "\n")] = '\0';
+    printf("cor......: ");
+    fgets(contato.cor, sizeof(contato.cor), stdin);
+    contato.cor[strcspn(contato.cor, "\n")] = '\0';
 
-    printf("E-mail........: ");
-    fgets(contato.email, sizeof(contato.email), stdin);
-    contato.email[strcspn(contato.email, "\n")] = '\0';
+    printf("regiao........: ");
+    fgets(contato.regiao, sizeof(contato.regiao), stdin);
+    contato.regiao[strcspn(contato.regiao, "\n")] = '\0';
 
     // Solicita confirmação do usuário
     printf("\nConfirma <s/n>: ");
@@ -87,8 +87,8 @@ void consultar(FILE *arq)
         if (contato.status == ' ')
         {
             printf("\nNome......: %s", contato.nome);
-            printf("\nTelefone..: %s", contato.tel);
-            printf("\nE-mail....: %s\n\n", contato.email);
+            printf("\nTelefone..: %s", contato.cor);
+            printf("\nE-mail....: %s\n\n", contato.regiao);
         }
         else
         {
@@ -117,8 +117,8 @@ void gerararqtxt(FILE *arq)
     }
 
     // Imprime cabeçalho no arquivo de texto
-    fprintf(arqtxt, "Nome                Telefone    E-mail                   Status\n");
-    fprintf(arqtxt, "================================================================\n");
+    fprintf(arqtxt, "Nome                cor             regiao             Status\n");
+    fprintf(arqtxt, "=============================================================\n");
 
     int nr;
     reg contato;
@@ -130,7 +130,7 @@ void gerararqtxt(FILE *arq)
         fread(&contato, sizeof(reg), 1, arq);
 
         // Imprime os dados no arquivo de texto
-        fprintf(arqtxt, "%-20s%-12s%-25s- %c\n", contato.nome, contato.tel, contato.email, contato.status);
+        fprintf(arqtxt, "%-20s%-12s%-25s- %c\n", contato.nome, contato.cor, contato.regiao, contato.status);
     }
 
     fclose(arqtxt);
@@ -158,8 +158,8 @@ void excluir(FILE *arq)
         if (contato.status == ' ')
         {
             printf("\nNome......: %s", contato.nome);
-            printf("\nTelefone..: %s", contato.tel);
-            printf("\nE-mail....: %s\n", contato.email);
+            printf("\nTelefone..: %s", contato.cor);
+            printf("\nE-mail....: %s\n", contato.regiao);
             printf("\nConfirma a exclusao: <s/n>\n");
             fflush(stdin);
             scanf(" %c", &confirma);
