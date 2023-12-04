@@ -1,3 +1,3 @@
 # linguagem-c
 
-aulas da faculdade
+aulas da faculdade, feitos em c e c++
